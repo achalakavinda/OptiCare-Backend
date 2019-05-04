@@ -29,7 +29,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(['action'=>'UserController@store','class'=>'form-horizontal','id'=>'Form']) !!}
+                {!! Form::open(['action'=>'UserController@store','class'=>'form-horizontal','id'=>'Form','file'=>true]) !!}
                 @include('error.error')
                 @include('admin.interfaces.user._partials.create')
                 {!! Form::close() !!}
