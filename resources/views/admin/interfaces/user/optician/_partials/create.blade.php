@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 {!! Form::label('role_id','*User Type',['class' => 'control-label']) !!}
-                {!! Form::select('role_id',array(1=>'Admin'),null,['class'=>'form-control','id'=>'role']) !!}
+                {!! Form::select('role_id',array(''=>'Choose Option')+ $roles ,null,['class'=>'form-control','id'=>'role']) !!}
             </div>
 
             <div class="form-group">

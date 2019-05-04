@@ -31,21 +31,20 @@
                             <th>#ID</th>
                             <th>Avatar</th>
                             <th>Name</th>
+
                             <th>Email</th>
-                            <th>Status</th>
                             <th>View <i class="fa fa-paper-plane"></i></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @if($Users)
+                        @if($opticians)
 
-                            @foreach($Users as $user)
+                            @foreach($opticians as $optician)
                                 <tr>
-                                    <td>{!! $user->id !!}</td>
-                                    <td><img height="30"  src="{{$user->avatar ? $user->avatar->file : '/images/No_image_available.svg'}}"> </td>
-                                    <td>{!! $user->name !!}</td>
-                                    <td>{!! $user->email !!}</td>
-                                    <td>{!! $user->is_active == 1 ? 'Active' : 'In-Active' !!}</td>
+                                    <td>{!! $optician->id !!}</td>
+                                    <td><img height="30"  src="{{$optician->user->avatar ? $optician->user->avatar->file : '/images/No_image_available.svg'}}"> </td>
+                                    <td>{!! $optician->shop_name !!}</td>
+                                    <td>{!! $optician->contact_number !!}</td>
                                     <td>
                                         <a href="{{route('user.edit',$user->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>

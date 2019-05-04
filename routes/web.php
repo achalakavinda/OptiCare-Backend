@@ -22,5 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::Resource('/check-up','CheckUpController');
 
+    Route::Resource('/optician','AdminOpticianController');
+
 });
 

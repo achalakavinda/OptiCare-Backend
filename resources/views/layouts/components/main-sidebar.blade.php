@@ -17,10 +17,14 @@
             <!-- Optionally, you can add icons to the links -->
             <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
-            <li><a href="{{ url('/user') }}"><i class="fa fa-users"></i> <span>User</span></a></li>
+            <li><a href="{{ url('/user') }}"><i class="fa fa-users"></i> <span>Admins</span></a></li>
+
+            <li><a href="{{ url('/optician') }}"><i class="fa ion-ios-medical"></i> <span>Opticians</span></a></li>
 
 
             <li><a href="{{ url('/product') }}"><i class="fa fa-users"></i> <span>Product</span></a></li>
+
+
 
 
             <li><a href="{{ url('/check-up') }}"><i class="fa fa-users"></i> <span>Check Up</span></a></li>
