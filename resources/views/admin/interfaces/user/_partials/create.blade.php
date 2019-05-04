@@ -13,13 +13,13 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('usertype','*User Type',['class' => 'control-label']) !!}
-                {!! Form::text('usertype',null,['class'=>'form-control','id'=>'UserType']) !!}
+                {!! Form::label('role_id','*User Type',['class' => 'control-label']) !!}
+                {!! Form::select('role_id',array(''=>'Choose Option')+ $roles ,null,['class'=>'form-control','id'=>'role']) !!}
             </div>
 
             <div class="form-group">
                     {!! Form::label('is_active','Status:') !!}
-                    {!! Form::text ('is_active',null,['class'=>'form-control'])!!}
+                    {!! Form::select ('is_active',array(1 =>'Active', 0 =>'Not Active'),0 ,['class'=>'form-control'])!!}
             </div>
 
 
@@ -29,8 +29,8 @@
             </div>
 
             <div class="form-group">
-                    {!! Form::label('avatar','Avatar:') !!}
-                    {!! Form::file ('avatar',null,['class'=>'form-control'])!!}
+                    {!! Form::label('avatar_id','Avatar:') !!}
+                    {!! Form::file ('avatar_id',null,['class'=>'form-control'])!!}
             </div>
     </div>
 

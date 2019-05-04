@@ -20,10 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password')->nullable();
 
-            $table->string('avatar')->nullable();
+            $table->string('avatar_id')->nullable();
+           $table->integer('role_id')->index()->unsigned()->nullable();
 
             // app specific columns.
-            $table->enum('type', ['user', 'optician', 'patient'])->default('user');
+
+//            $table->enum('type', ['user', 'optician', 'patient'])->default('user');
             $table->unsignedInteger('optician_id')->nullable();
 
             $table->boolean('is_active')->default(1);

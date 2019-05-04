@@ -33,6 +33,7 @@
                         <thead>
                         <tr>
                             <th>#ID</th>
+
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>
@@ -40,18 +41,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($Users as $user)
-                            <tr>
-                                <td>{!! $user->id !!}</td>
-                                <td>{!! $user->name !!}</td>
-                                <td>{!! $user->contact !!}</td>
-                                <td>{!! $user->email !!}</td>
-                                <td>
-                                    <a href="{!! url('/users/') !!}/{!! $user->id !!}"><i class="fa fa-paper-plane"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
+
+                        @if($Users)
+                            @foreach($Users as $user)
+                                <tr>
+                                    <td>{!! $user->id !!}
+                                    <td>{!! $user->name !!}</td>
+                                    <td>{!! $user->contact !!}</td>
+                                    <td>{!! $user->email !!}</td>
+                                    <td>
+                                        <a href="{!! url('/users/') !!}/{!! $user->id !!}"><i class="fa fa-paper-plane"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                            </tbody>
                     </table>
                 </div>
                 <!-- /.box-body -->
