@@ -19,9 +19,13 @@
 
             <li><a href="{{ url('/user') }}"><i class="fa fa-users"></i> <span>User</span></a></li>
 
-            <li><a href="{{ url('/vendor') }}"><i class="fa fa-users"></i> <span>Vendor</span></a></li>
-            <li><a href="{{ url('/optician') }}"><i class="fa fa-users"></i> <span>Optician</span></a></li>
-            <li><a href="{{ url('/patient') }}"><i class="fa fa-users"></i> <span>Patient</span></a></li>
+
+            <li><a href="{{ url('/product') }}"><i class="fa fa-users"></i> <span>Product</span></a></li>
+
+
+            <li><a href="{{ url('/check-up') }}"><i class="fa fa-users"></i> <span>Check Up</span></a></li>
+
+
 
 
         </ul>

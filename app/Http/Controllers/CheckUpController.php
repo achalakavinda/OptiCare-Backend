@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\CheckUp;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CheckUpController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $Users = User::all();
-        return view('admin.interfaces.user.index',compact('Users'));
+        $CheckUps = CheckUp::all();
+        return view('admin.interfaces.checkup.index',compact(['CheckUps']));
     }
 
     /**
@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.interfaces.user.create');
+        //
     }
 
     /**
