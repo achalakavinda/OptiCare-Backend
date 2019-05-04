@@ -31,7 +31,7 @@
                             <th>#ID</th>
                             <th>Avatar</th>
                             <th>Name</th>
-                            <th>Contact</th>
+
                             <th>Email</th>
                             <th>View <i class="fa fa-paper-plane"></i></th>
                         </tr>
@@ -44,10 +44,9 @@
                                     <td>{!! $user->id !!}</td>
                                     <td><img height="30"  src="{{$user->avatar ? $user->avatar->file : '/images/No_image_available.svg'}}"> </td>
                                     <td>{!! $user->name !!}</td>
-                                    <td>{!! $user->contact !!}</td>
                                     <td>{!! $user->email !!}</td>
                                     <td>
-                                        <a href="{!! url('/users/') !!}/{!! $user->id !!}"><i class="fa fa-paper-plane"></i></a>
+                                        <a href="{{route('user.edit',$user->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

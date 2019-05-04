@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Avatar;
+use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRequest;
 use App\Role;
 use App\User;
@@ -73,7 +74,7 @@ class UserController extends Controller
 
         User::create($input);
 
-        return redirect('/users');
+        return redirect('/user');
 
     }
 
@@ -96,7 +97,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::pluck('name','id')->all();
+
+        return view('admin.interfaces.user.edit',compact('user','roles'));
     }
 
     /**
@@ -106,9 +110,38 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
-        //
+        $user =User::findOrFail($id);
+
+        if(trim($request->password) ==''){
+
+            $input = $request->except('password');
+
+        }else{
+
+
+            $input  = $request->all();
+
+            $input ['password'] = bcrypt($request->password);
+        }
+
+
+        if($file = $request->file('avatar_id')){
+
+            $name = time(). $file->getClientOriginalName();
+
+            $file->move('images',$name);
+
+            $avatar = Avatar::create(['file'=>$name]);
+
+            $input ['avatar_id'] = $avatar->id;
+
+        }
+
+            $user->update($input);
+
+            return redirect('/user');
     }
 
     /**
@@ -119,6 +152,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        unlink(public_path(). $user->avatar->file);
+
+        $user->delete();
+
+        return redirect('/user');
+
+
+
     }
 }
