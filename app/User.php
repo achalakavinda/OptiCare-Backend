@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -31,5 +33,30 @@ class User extends Authenticatable
     public function avatar(){
 
         return $this->belongsTo('App\Avatar');
+    }
+
+    public function role()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    public static function CheckPermission($_value){
+        if (is_array($_value))
+        {
+
+            $permission = \Auth::user()->hasAnyPermission($_value);
+            if(!$permission){
+                abort(403);
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            try {
+                return \Auth::user()->hasPermissionTo($_value);
+            } catch (\Exception $e){
+                return false;
+            }
+        }
     }
 }

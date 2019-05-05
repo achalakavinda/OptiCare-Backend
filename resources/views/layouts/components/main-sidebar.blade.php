@@ -30,7 +30,31 @@
             <li><a href="{{ url('/check-up') }}"><i class="fa fa-users"></i> <span>Check Up</span></a></li>
 
 
+            <li style="padding-bottom: 50px;" class="treeview">
+                <a href="{{ url('/settings') }}"><i class="fa fa-cogs"></i> <span>Settings</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('/settings') }}"><i class="fa fa-cogs"></i> Settings</a></li>
 
+
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-users"></i> <span>Access Control</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                              </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ url('/settings/access-control/permissions') }}"><i class="fa fa-universal-access"></i>Permission</a></li>
+                            <li><a href="{{ url('/settings/access-control/roles') }}"><i class="fa fa-level-up"></i>Roles</a></li>
+                            <li><a href="{{ url('/settings/access-control/user-management') }}"><i class="fa fa-users"></i>User Management</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
 
         </ul>
         <!-- /.sidebar-menu -->

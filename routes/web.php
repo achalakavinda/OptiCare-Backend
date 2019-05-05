@@ -24,5 +24,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::Resource('/optician','AdminOpticianController');
 
+
+    Route::prefix('settings')->group(function () {
+        Route::get('/','SettingController@index');
+        Route::Resource('/access-control/permissions', 'PermissionsController');
+        Route::Resource('/access-control/roles', 'RolesController');
+        Route::Resource('/access-control/user-management', 'UserManagementController');
+    });
+
 });
 
