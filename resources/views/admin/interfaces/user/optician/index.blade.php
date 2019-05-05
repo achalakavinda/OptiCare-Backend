@@ -45,7 +45,7 @@
                                     <td>{!! $optician->shop_name !!}</td>
                                     <td>{!! $optician->contact_number !!}</td>
                                     <td>
-                                        <a href="{{route('user.edit',$optician->user->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                        <a href="{{route('optician.edit',$optician->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

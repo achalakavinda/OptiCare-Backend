@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Avatar;
 use App\Http\Requests\AdminOpticianCreate;
+use App\Http\Requests\AdminOpticianEdit;
 use App\Models\OpticianDetail;
 use App\User;
 use Illuminate\Http\Request;
@@ -42,9 +43,7 @@ class AdminOpticianController extends Controller
     public function store(AdminOpticianCreate $request)
     {
 
-        $input  = $request->all();
-
-
+            $input  = $request->all();
 
             if(trim($request->password) ==''){
 
@@ -82,13 +81,7 @@ class AdminOpticianController extends Controller
             ]);
 
 
-
-
-
-
-
-        return redirect('/optician');
-
+            return redirect('/optician');
 
     }
 
@@ -111,7 +104,11 @@ class AdminOpticianController extends Controller
      */
     public function edit($id)
     {
-        //
+//        $user = User::findOrFail($id);
+
+        $optician = OpticianDetail::findOrFail($id);
+
+        return view('admin.interfaces.user.optician.edit',compact('optician'));
     }
 
     /**
@@ -121,9 +118,40 @@ class AdminOpticianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminOpticianEdit $request, $id)
     {
-        //
+
+        $optician = OpticianDetail::findOrFail($id);
+
+        if(trim($request->password) ==''){
+
+            $input = $request->except('password');
+
+        }else{
+
+            $input = $request->all();
+
+            $input ['password'] = bcrypt($request->password);
+
+        }
+
+        if( $file = $request->file('avatar_id')){
+
+            $name = time(). $file->getClientOriginalName();
+
+            $file->move('images',$name);
+
+            $avatar = Avatar::create(['file'=>$name]);
+
+            $input ['avatar_id'] = $avatar->id;
+
+        }
+
+        $optician->update($input);
+
+        return redirect('/optician');
+
+
     }
 
     /**
