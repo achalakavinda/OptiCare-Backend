@@ -34,7 +34,18 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
         });
+
+        DB::table('users')->insert([
+            [
+                'id'=>1,
+                'name' => 'admin',
+                'email' => 'admin@test.com',
+                'password' => bcrypt('admin123'),
+            ]
+        ]);
     }
+
+
 
     /**
      * Reverse the migrations.
