@@ -9,8 +9,8 @@
         </div>
         <div class="box-body">
             <a href="{{ url('/') }}" class="btn btn-success">Dashboard</a>
-            <a href="{{ url('/user') }}" class="btn btn-success">User</a>
-            <a href="{{ url('/user/create') }}" class="btn btn-success">New</a>
+            <a href="{{ url('/optician') }}" class="btn btn-success">optician</a>
+            <a href="{{ url('/optician/create') }}" class="btn btn-success">New optician</a>
         </div>
         <!-- /.box-body -->
     </div>
@@ -25,13 +25,13 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Add User</h3>
+                    <h3 class="box-title">Add Optician</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(['method' =>'POST','action'=>'UserController@store','class'=>'form-horizontal','id'=>'Form','files'=>true]) !!}
+                {!! Form::open(['method' =>'POST','action'=>'AdminOpticianController@store','class'=>'form-horizontal','id'=>'Form','files'=>true]) !!}
                 @include('error.error')
-                @include('admin.interfaces.user._partials.create')
+                @include('admin.interfaces.user.optician._partials.create')
                 {!! Form::close() !!}
             </div>
             <!-- /.box -->

@@ -30,11 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-
-          $roles = Role::pluck('name','id')->all();
-
-
-        return view('admin.interfaces.user.create',compact('roles'));
+        return view('admin.interfaces.user.create');
     }
 
     /**

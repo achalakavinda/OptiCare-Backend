@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Avatar;
+use App\Http\Requests\AdminOpticianCreate;
 use App\Models\OpticianDetail;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminOpticianController extends Controller
 {
@@ -26,7 +30,7 @@ class AdminOpticianController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.interfaces.user.optician.create');
     }
 
     /**
@@ -35,9 +39,57 @@ class AdminOpticianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminOpticianCreate $request)
     {
-        //
+
+        $input  = $request->all();
+
+
+
+            if(trim($request->password) ==''){
+
+                $input = $request->except('password');
+
+            }else{
+
+                $input = $request->all();
+                $input ['password'] = bcrypt($request->password);
+
+            }
+
+            if( $file = $request->file('avatar_id')){
+
+                $name = time(). $file->getClientOriginalName();
+
+                $file->move('images',$name);
+
+                $avatar = Avatar::create(['file'=>$name]);
+
+                $input ['avatar_id'] = $avatar->id;
+
+            }
+            $user =User::create($input);
+
+            $user->optician()->create([
+                'user_id'                       => $user->id,
+                'shop_name'                     => $request->shop_name,
+                'br_number'                     => $request->br_number,
+                'address'                       => $request->address,
+                'contact_number'                => $request->contact_number,
+                'contact_number_alternative'    => $request->contact_number_alternative,
+                'latitude'                      => 1,
+                'longitude'                     => 2,
+            ]);
+
+
+
+
+
+
+
+        return redirect('/optician');
+
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OpticianDetail;
 use Illuminate\Http\Request;
 
 class OpticianController extends Controller
@@ -13,7 +14,7 @@ class OpticianController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -23,7 +24,7 @@ class OpticianController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

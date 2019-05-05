@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\OpticianDetail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,6 +39,12 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    public  function  optician(){
+
+        return $this->belongsTo('App\Models\OpticianDetail');
+
     }
 
     public static function CheckPermission($_value){

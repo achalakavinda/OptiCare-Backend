@@ -21,7 +21,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <a href="{{ url('/user/create') }}" class="btn btn-sm btn-danger">New <i class="fa fa-plus-square"></i></a>
+                    <a href="{{route('optician.create')}}" class="btn btn-sm btn-danger">New <i class="fa fa-plus-square"></i></a>
                 </div>
                 <!-- /.box-header -->
                 <div style="overflow: auto" class="box-body">
@@ -31,8 +31,7 @@
                             <th>#ID</th>
                             <th>Avatar</th>
                             <th>Name</th>
-
-                            <th>Email</th>
+                            <th>Contact Number</th>
                             <th>View <i class="fa fa-paper-plane"></i></th>
                         </tr>
                         </thead>
@@ -46,7 +45,7 @@
                                     <td>{!! $optician->shop_name !!}</td>
                                     <td>{!! $optician->contact_number !!}</td>
                                     <td>
-                                        <a href="{{route('user.edit',$user->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                        <a href="{{route('user.edit',$optician->user->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
