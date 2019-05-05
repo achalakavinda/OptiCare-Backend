@@ -21,6 +21,7 @@
 
             <li><a href="{{ url('/optician') }}"><i class="fa ion-ios-medical"></i> <span>Opticians</span></a></li>
 
+            <li><a href="{{ url('/patient') }}"><i class="fa ion-ios-medical"></i> <span>Opticians-Patient</span></a></li>
 
             <li><a href="{{ url('/product') }}"><i class="fa fa-users"></i> <span>Product</span></a></li>
 

@@ -47,6 +47,12 @@ class User extends Authenticatable
 
     }
 
+    public function  patients(){
+
+        return $this->hasMany('App\Models\PatientDetail');
+    }
+
+
     public static function CheckPermission($_value){
         if (is_array($_value))
         {

@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::Resource('/optician','AdminOpticianController');
 
+    Route::Resource('/patient','OpticianPatientController');
+
 
     Route::prefix('settings')->group(function () {
         Route::get('/','SettingController@index');

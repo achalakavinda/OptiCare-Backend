@@ -67,7 +67,7 @@ class AdminOpticianController extends Controller
                 $input ['avatar_id'] = $avatar->id;
 
             }
-            $user =User::create($input);
+            $user = User::create($input);
 
             $user->optician()->create([
                 'user_id'                       => $user->id,
@@ -104,7 +104,8 @@ class AdminOpticianController extends Controller
      */
     public function edit($id)
     {
-//        $user = User::findOrFail($id);
+//
+
 
         $optician = OpticianDetail::findOrFail($id);
 
@@ -146,6 +147,8 @@ class AdminOpticianController extends Controller
             $input ['avatar_id'] = $avatar->id;
 
         }
+
+
 
         $optician->update($input);
 
