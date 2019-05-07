@@ -17,7 +17,7 @@ class CreateProductSalesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('patient_id');
-            $table->unsignedInteger('optician_id');
+            $table->unsignedInteger('optician_detail_id'); // changed optician_id -> optician_detail_id
             $table->date('warranty');
             $table->timestamps();
         });

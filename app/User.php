@@ -52,6 +52,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\PatientDetail');
     }
 
+    public function productType() {
+
+        return $this->hasMany('App\Models\ProductType');
+    }
+
+
 
     public static function CheckPermission($_value){
         if (is_array($_value))

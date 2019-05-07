@@ -26,6 +26,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::Resource('/patient','OpticianPatientController');
 
+    Route::Resource('/product','OpticianProductController');
+
+    Route::Resource('/productType','ProductTypeController');
+
 
     Route::prefix('settings')->group(function () {
         Route::get('/','SettingController@index');

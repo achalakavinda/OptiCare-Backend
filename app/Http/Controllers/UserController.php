@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use mysql_xdevapi\Session;
 
 class UserController extends Controller
@@ -19,6 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $Users = User::all();
         return view('admin.interfaces.user.index',compact('Users'));
     }
