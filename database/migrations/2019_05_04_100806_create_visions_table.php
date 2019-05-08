@@ -19,17 +19,17 @@ class CreateVisionsTable extends Migration
             $table->unsignedInteger('patient_id');
             $table->unsignedInteger('parent_id');
 
-            $table->string('l_sphere');
-            $table->string('l_cyl');
-            $table->string('l_axis');
-            $table->string('l_add');
-            $table->string('l_p&b');
+            $table->string('l_sphere')->nullable();
+            $table->string('l_cyl')->nullable();
+            $table->string('l_axis')->nullable();
+            $table->string('l_add')->nullable();
+            $table->string('l_p&b')->nullable();
 
-            $table->string('r_sphere');
-            $table->string('r_cyl');
-            $table->string('r_axis');
-            $table->string('r_add');
-            $table->string('r_p&b');
+            $table->string('r_sphere')->nullable();
+            $table->string('r_cyl')->nullable();
+            $table->string('r_axis')->nullable();
+            $table->string('r_add')->nullable();
+            $table->string('r_p&b')->nullable();
             $table->timestamps();
         });
     }

@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ProductType');
     }
 
+    public function products(){
+
+        return $this->hasMany('App\Models\Product');
+    }
+
 
 
     public static function CheckPermission($_value){
