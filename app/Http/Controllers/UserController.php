@@ -56,6 +56,8 @@ class UserController extends Controller
 
             $input ['password'] = bcrypt($request->password);
 
+
+
         }
 
         if($file = $request->file('avatar_id')){
@@ -70,9 +72,13 @@ class UserController extends Controller
             $input ['avatar_id'] = $avatar->id;
         }
 
-        User::create($input);
 
-        return redirect('/user');
+
+            User::create($input);
+
+
+
+             return redirect('/user');
 
     }
 

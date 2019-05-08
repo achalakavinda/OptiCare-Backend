@@ -16,9 +16,8 @@ class OpticianProductController extends Controller
      */
     public function index()
     {
-
+        //optician specific products
         $products = ProductSale::all();
-//       $product =
 
         return view('admin.interfaces.product.index',compact('products'));
 
@@ -32,7 +31,7 @@ class OpticianProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.interfaces.product.create');
     }
 
     /**

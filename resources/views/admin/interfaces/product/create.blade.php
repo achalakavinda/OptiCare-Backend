@@ -8,9 +8,9 @@
             <h3 class="box-title">User</h3>
         </div>
         <div class="box-body">
-            <a href="{{ url('/') }}" class="btn btn-success">Dashboard</a>
-            <a href="{{ url('/optician') }}" class="btn btn-success">optician</a>
-            <a href="{{ url('/optician/create') }}" class="btn btn-success">New optician</a>
+            {{--<a href="{{ url('/') }}" class="btn btn-success">Dashboard</a>--}}
+            <a href="{{ url('/product') }}" class="btn btn-success">Product</a>
+            {{--<a href="{{ url('/optician/create') }}" class="btn btn-success">New optician</a>--}}
         </div>
         <!-- /.box-body -->
     </div>

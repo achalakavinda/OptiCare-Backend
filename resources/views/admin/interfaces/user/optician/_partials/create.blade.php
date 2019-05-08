@@ -13,8 +13,8 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('role_id','*User Type',['class' => 'control-label']) !!}
-                {!! Form::select('role_id',array(2=>'Optician'),null,['class'=>'form-control','id'=>'role']) !!}
+                {!! Form::label('type','*User Type',['class' => 'control-label']) !!}
+                {!! Form::select('type',array('optician'=>'Optician'),null,['class'=>'form-control','id'=>'role']) !!}
             </div>
 
             <div class="form-group">

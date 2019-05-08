@@ -27,7 +27,7 @@ class AdminOpticianCreate extends FormRequest
 
             'name'           => 'required',
             'email'          => 'required',
-            'role_id'        => 'required',
+            'type'          => 'required',
             'is_active'      =>'required',
             'password'       => 'required',
 

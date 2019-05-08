@@ -67,18 +67,22 @@ class AdminOpticianController extends Controller
                 $input ['avatar_id'] = $avatar->id;
 
             }
-            $user = User::create($input);
 
-            $user->optician()->create([
-                'user_id'                       => $user->id,
-                'shop_name'                     => $request->shop_name,
-                'br_number'                     => $request->br_number,
-                'address'                       => $request->address,
-                'contact_number'                => $request->contact_number,
-                'contact_number_alternative'    => $request->contact_number_alternative,
-                'latitude'                      => 1,
-                'longitude'                     => 2,
-            ]);
+            return $input;
+//            $user = User::create($input);
+//
+//
+//
+//            $user->optician()->create([
+//                'user_id'                       => $user->id,
+//                'shop_name'                     => $request->shop_name,
+//                'br_number'                     => $request->br_number,
+//                'address'                       => $request->address,
+//                'contact_number'                => $request->contact_number,
+//                'contact_number_alternative'    => $request->contact_number_alternative,
+//                'latitude'                      => 1,
+//                'longitude'                     => 2,
+//            ]);
 
 
             return redirect('/optician');
