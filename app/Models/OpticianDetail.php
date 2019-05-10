@@ -29,6 +29,14 @@ class OpticianDetail extends Model
 
     }
 
+    public function product(){
 
+        return $this->hasMany('App\Models\Product');
+    }
+
+    public function patients(){
+
+        return $this->hasMany('App\Models\PatientDetail');
+    }
 
 }

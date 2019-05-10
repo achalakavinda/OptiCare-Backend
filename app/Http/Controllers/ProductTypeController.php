@@ -18,6 +18,7 @@ class ProductTypeController extends Controller
     {
         $productTypes = Auth::user()->productType->all();
 
+
 //        $productTypes = ProductType::all();
         return view('admin.interfaces.product.productType.index',compact('productTypes'));
     }

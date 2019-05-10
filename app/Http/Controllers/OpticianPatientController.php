@@ -75,6 +75,7 @@ class OpticianPatientController extends Controller
         }
 
             $user = User::create($input);
+
             $user->patients()->create([
 
                 'user_id'           => $user->id,

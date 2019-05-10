@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Product');
     }
 
+    public function vision(){
+
+        return $this->hasMany('App\Models\Vision');
+    }
+
 
 
     public static function CheckPermission($_value){

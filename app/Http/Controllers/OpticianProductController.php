@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OpticianProductCreate;
 use App\Models\PatientDetail;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ProductSale;
+use App\Models\ProductType;
+use App\Models\Vision;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OpticianProductController extends Controller
 {
@@ -17,7 +22,7 @@ class OpticianProductController extends Controller
     public function index()
     {
         //optician specific products
-        $products = ProductSale::all();
+        $products = Product::all();
 
         return view('admin.interfaces.product.index',compact('products'));
 
@@ -31,7 +36,13 @@ class OpticianProductController extends Controller
      */
     public function create()
     {
-        return view('admin.interfaces.product.create');
+//            $productType = ProductType::all();
+            $productVision = Vision::pluck('id')->all();
+            $productPatient = PatientDetail::pluck('contact_number','id')->all();
+//        $productType->productType()->pluck('name','id')->all();
+        $productType = ProductType::pluck('name','id')->all();
+
+        return view('admin.interfaces.product.create',compact('productType','productVision','productPatient'));
     }
 
     /**
@@ -40,9 +51,85 @@ class OpticianProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OpticianProductCreate $request)
     {
-        //
+
+        return $request;
+        $user = Auth::user();
+
+        $product = Product::create([
+
+            'user_id'               =>  $user->id,
+            'vision_id'             =>  1,
+            'product_type_id'       =>  $request->product_type_id,
+            'name'                  =>  $request->name,
+            'description'           =>  $request->description,
+        ]);
+
+        $images =array();
+
+        if($files = $request->file('image'))
+        {
+
+            foreach ($files as $file)
+            {
+                $name = time(). $file->getClientOriginalName();
+                $file->move('images',$name);
+                $images[] = $name;
+
+                ProductImage::create([
+                    'image'        =>   $name,
+                    'product_id'   =>   $product->id
+
+                ]);
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+        if($file = $request->file(['front_url','left_side_url','right_side_url'])){
+
+            $frontImage = time() . "image1" . $file [0]->getClientOriginalName();
+            $leftImage  = time() . "image2" . $file [1]->getClientOriginalName();
+            $rightImage  = time() . "image3" . $file [2]->getClientOriginalName();
+
+            $file[0]->move('images',$frontImage);
+            $file[1]->move('images',$leftImage );
+            $file[2]->move('images',$rightImage);
+
+            ProductImage::create([
+               'product_id'        => $request->id,
+                'front_url'         => $frontImage,
+                'left_side_url'     => $leftImage,
+                'right_side_url'    => $rightImage,
+           ]);
+
+        }
+
+//        $user->products()->create($request->all());
+        Product::create([
+
+            'user_id'               =>  $user->id,
+            'vision_id'             =>  1,
+            'product_type_id'       =>  $request->product_type_id,
+            'name'                  =>  $request->name,
+            'description'           =>  $request->description,
+        ]);
+
+
+            return redirect('/product');
+
+
+
     }
 
     /**

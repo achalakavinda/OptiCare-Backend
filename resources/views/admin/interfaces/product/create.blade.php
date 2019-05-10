@@ -25,13 +25,13 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Add Optician</h3>
+                    <h3 class="box-title">Add Product</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(['method' =>'POST','action'=>'AdminOpticianController@store','class'=>'form-horizontal','id'=>'Form','files'=>true]) !!}
+                {!! Form::open(['method' =>'POST','action'=>'OpticianProductController@store','class'=>'form-horizontal','id'=>'Form','files'=>true]) !!}
                 @include('error.error')
-                @include('admin.interfaces.user.optician._partials.create')
+                @include('admin.interfaces.product._partials.create')
                 {!! Form::close() !!}
             </div>
             <!-- /.box -->

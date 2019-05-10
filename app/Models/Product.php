@@ -8,9 +8,13 @@ class Product extends Model
 {
     protected $fillable = [
 
-        'product_name',
+        'user_id',
+        'patient_detail_id',
+        'product_image_id',
+        'vision_id',
+        'product_type_id',
+        'name',
         'description',
-        'otherInfo',
 
     ];
 

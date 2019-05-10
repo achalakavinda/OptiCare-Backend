@@ -17,10 +17,10 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('patient_detail_id');
-            $table->unsignedInteger('optician_detail_id');
-            $table->string('productImage_id');
-            $table->unsignedInteger('vision_id');
+            $table->unsignedInteger('vision_id')->nullable();
             $table->unsignedInteger('product_type_id');
+            $table->unsignedInteger('product_image_id');
+
 
 
             $table->string('name');
