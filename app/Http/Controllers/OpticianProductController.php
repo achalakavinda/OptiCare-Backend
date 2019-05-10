@@ -58,19 +58,39 @@ class OpticianProductController extends Controller
 
        $user = Auth::user();
 
-        if( $file = $request->file('product_image_id')){
+       $files = $request->file('product_image_id');
 
-            $name = time(). $file->getClientOriginalName();
+       if($request->hasFile('product_image_id')){
 
-            $file->move('images',$name);
+           foreach ($files as $file){
 
-            $avatar = ProductImage::create(['image'=>$name]);
+               $name = time(). $file->getClientOriginalName();
 
-            $input ['product_image_id'] = $avatar->id;
+               $file->move('images',$name);
 
-        }
+               $productImage = ProductImage::create(['image'=>$name]);
 
-            $user->products()->create($request->all());
+               $input ['product_image_id'] = $productImage->id;
+           }
+
+
+       }
+
+                $user->products()->create($input);
+
+//        if( $file = $request->file('product_image_id')){
+//
+//            $name = time(). $file->getClientOriginalName();
+//
+//            $file->move('images',$name);
+//
+//            $avatar = ProductImage::create(['image'=>$name]);
+//
+//            $input ['product_image_id'] = $avatar->id;
+//
+//        }
+
+
 
 
 
