@@ -54,76 +54,58 @@ class OpticianProductController extends Controller
     public function store(OpticianProductCreate $request)
     {
 
-        return $request;
-        $user = Auth::user();
+       $input = $request->all();
 
-        $product = Product::create([
+       $user = Auth::user();
 
-            'user_id'               =>  $user->id,
-            'vision_id'             =>  1,
-            'product_type_id'       =>  $request->product_type_id,
-            'name'                  =>  $request->name,
-            'description'           =>  $request->description,
-        ]);
+        if( $file = $request->file('product_image_id')){
 
-        $images =array();
+            $name = time(). $file->getClientOriginalName();
 
-        if($files = $request->file('image'))
-        {
+            $file->move('images',$name);
 
-            foreach ($files as $file)
-            {
-                $name = time(). $file->getClientOriginalName();
-                $file->move('images',$name);
-                $images[] = $name;
+            $avatar = ProductImage::create(['image'=>$name]);
 
-                ProductImage::create([
-                    'image'        =>   $name,
-                    'product_id'   =>   $product->id
-
-                ]);
-
-
-
-            }
-
-
+            $input ['product_image_id'] = $avatar->id;
 
         }
 
+            $user->products()->create($request->all());
 
 
 
 
 
-        if($file = $request->file(['front_url','left_side_url','right_side_url'])){
 
-            $frontImage = time() . "image1" . $file [0]->getClientOriginalName();
-            $leftImage  = time() . "image2" . $file [1]->getClientOriginalName();
-            $rightImage  = time() . "image3" . $file [2]->getClientOriginalName();
 
-            $file[0]->move('images',$frontImage);
-            $file[1]->move('images',$leftImage );
-            $file[2]->move('images',$rightImage);
-
-            ProductImage::create([
-               'product_id'        => $request->id,
-                'front_url'         => $frontImage,
-                'left_side_url'     => $leftImage,
-                'right_side_url'    => $rightImage,
-           ]);
-
-        }
-
-//        $user->products()->create($request->all());
-        Product::create([
-
-            'user_id'               =>  $user->id,
-            'vision_id'             =>  1,
-            'product_type_id'       =>  $request->product_type_id,
-            'name'                  =>  $request->name,
-            'description'           =>  $request->description,
-        ]);
+//        if($file = $request->file(['front_url','left_side_url','right_side_url'])){
+//
+//            $frontImage = time() . "image1" . $file [0]->getClientOriginalName();
+//            $leftImage  = time() . "image2" . $file [1]->getClientOriginalName();
+//            $rightImage  = time() . "image3" . $file [2]->getClientOriginalName();
+//
+//            $file[0]->move('images',$frontImage);
+//            $file[1]->move('images',$leftImage );
+//            $file[2]->move('images',$rightImage);
+//
+//            ProductImage::create([
+//               'product_id'        => $request->id,
+//                'front_url'         => $frontImage,
+//                'left_side_url'     => $leftImage,
+//                'right_side_url'    => $rightImage,
+//           ]);
+//
+//        }
+//
+////        $user->products()->create($request->all());
+//        Product::create([
+//
+//            'user_id'               =>  $user->id,
+//            'vision_id'             =>  1,
+//            'product_type_id'       =>  $request->product_type_id,
+//            'name'                  =>  $request->name,
+//            'description'           =>  $request->description,
+//        ]);
 
 
             return redirect('/product');

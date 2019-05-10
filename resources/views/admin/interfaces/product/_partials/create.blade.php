@@ -14,7 +14,7 @@
 
             <div class="form-group">
                     {!! Form::label('vision_id','Vision :') !!}
-                    {!! Form::select ('vision_id',[''=>'Choose Type'] + $productVision,null,['class'=>'form-control'])!!}
+                    {!! Form::select ('vision_id',[1=>'Choose Type'] + $productVision,null,['class'=>'form-control'])!!}
             </div>
 
             <div class="form-group">
