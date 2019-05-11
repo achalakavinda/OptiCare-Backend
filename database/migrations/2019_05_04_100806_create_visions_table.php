@@ -17,7 +17,9 @@ class CreateVisionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('optician_id');
             $table->unsignedInteger('patient_id');
-            $table->unsignedInteger('parent_id');
+            $table->integer('parent_id')->default(0);
+
+            $table->unsignedInteger('check_up_id');
 
             $table->string('l_sphere')->nullable();
             $table->string('l_cyl')->nullable();
