@@ -153,7 +153,9 @@ class OpticianProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return view('admin.interfaces.product.edit',compact('product'));
     }
 
     /**
