@@ -22,7 +22,7 @@
 
                     <div class="col-sm-3">
 
-                        <img src="{{$optician->user->avatar ? $optician->user->avatar->file : '/images/No_image_available.svg'}}" alt="" class="img-responsive">
+                        <img src="{{$product->image ? $product->productImage->image : '/images/No_image_available.svg'}}" alt="" class="img-responsive">
                     </div>
 
                     <div class="col-sm-9">
@@ -30,15 +30,15 @@
 
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Edit Information of {{$optician->shop_name}}</h3>
+                                    <h3 class="box-title">Edit Information of {{$product->name}}</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
 
-                                {!! Form::model($optician,['method' =>'PATCH','action'=>['AdminOpticianController@update',$optician->id],'class'=>'form-horizontal','id'=>'Form','files'=>true]) !!}
+                                {!! Form::model($product,['method' =>'PATCH','action'=>['OpticianProductController@update',$product->id],'class'=>'form-horizontal','id'=>'Form','files'=>true]) !!}
 
                                     @include('error.error')
-                                    @include('admin.interfaces.user.optician._partials.edit')
+                                    @include('admin.interfaces.product._partials.edit')
                                 {!! Form::close() !!}
 
                             </div>

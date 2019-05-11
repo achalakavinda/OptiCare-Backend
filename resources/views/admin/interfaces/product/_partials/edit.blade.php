@@ -3,37 +3,37 @@
     <div class="col-md-6">
 
         <div class="form-group">
-            {!! Form::label('shop_name','Name of the Office:') !!}
-            {!! Form::text ('shop_name',null,['class'=>'form-control'])!!}
+            {!! Form::label('name','Name:') !!}
+            {!! Form::text ('name',null,['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('br_number','Business Registration No:') !!}
-            {!! Form::text ('br_number',null,['class'=>'form-control'])!!}
+            {!! Form::label('product_type_id','Product Type') !!}
+            {!! Form::select ('product_type_id',[''=>'Choose Type']+ $productType ,null,['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('address','Address:') !!}
-            {!! Form::text ('address',null,['class'=>'form-control'])!!}
+            {!! Form::label('vision_id','Vision :') !!}
+            {!! Form::select ('vision_id',[1=>'Choose Type'] + $productVision,null,['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('contact_number','Contact Number:') !!}
-            {!! Form::text ('contact_number',null,['class'=>'form-control'])!!}
+            {!! Form::label('patient_detail_id','Patient Name :') !!}
+            {!! Form::select ('patient_detail_id',[''=>'Choose Type'] + $productPatient,null,['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('contact_number_alternative','Other Contact Number:') !!}
-            {!! Form::text ('contact_number_alternative',null,['class'=>'form-control'])!!}
+            {!! Form::label('description','Description:') !!}
+            {!! Form::text ('description',null,['class'=>'form-control'])!!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('product_image_id[]','Image:') !!}
+            {!! Form::file ('product_image_id[]',array('multiple'=>true,'accept'=>'image/*'),['class'=>'form-control'])!!}
         </div>
     </div>
-
-
-
-
 </div>
 <!-- /.box-body -->
-
 <div class="box-footer">
     {!! Form::submit('submit',['class'=>'btn btn-primary col-sm-6']) !!}
 </div>

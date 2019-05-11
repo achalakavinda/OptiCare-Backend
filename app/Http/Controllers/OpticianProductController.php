@@ -155,7 +155,11 @@ class OpticianProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        return view('admin.interfaces.product.edit',compact('product'));
+        $productVision = Vision::pluck('id')->all();
+        $productPatient = PatientDetail::pluck('contact_number','id')->all();
+        $productType = ProductType::pluck('name','id')->all();
+
+        return view('admin.interfaces.product.edit',compact('product','productVision','productPatient','productType'));
     }
 
     /**

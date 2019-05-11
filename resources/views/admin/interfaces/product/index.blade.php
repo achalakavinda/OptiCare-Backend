@@ -48,7 +48,7 @@
                                     <td>{!! $product->name !!}</td>
                                     <td>{!! $product->productType->name !!}</td>
                                     <td>
-                                    <a href="{{route('optician.edit',$product->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                    <a href="{{route('product.edit',$product->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
