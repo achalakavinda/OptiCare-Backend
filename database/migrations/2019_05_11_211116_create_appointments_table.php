@@ -4,23 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductSalesTable extends Migration
+class CreateAppointmentsTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
-    //dummy table
     public function up()
     {
-        Schema::create('product_sales', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('product_id');
-            $table->unsignedInteger('patient_id');
-            $table->unsignedInteger('optician_detail_id'); // changed optician_id -> optician_detail_id
-            $table->date('warranty');
+            $table->unsignedInteger('check_up_id');
+            $table->date('date')->default(\Carbon\Carbon::now());
+            $table->boolean('isClose')->default(0);
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateProductSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_sales');
+        Schema::dropIfExists('appointments');
     }
 }

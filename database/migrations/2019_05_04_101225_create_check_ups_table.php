@@ -17,6 +17,13 @@ class CreateCheckUpsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('optician_id');
             $table->unsignedInteger('patient_id');
+
+            $table->date('date');
+            $table->enum('type',['Generic','Myopia','Hyperopia'])->default('Generic');
+            $table->boolean('isMobile')->default(false);
+            $table->enum('status',['Pending','Close','Appointment'])->default('Close');
+            $table->text('note')->nullable();
+
             $table->timestamps();
         });
     }

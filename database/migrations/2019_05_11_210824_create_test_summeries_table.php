@@ -4,23 +4,26 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductSalesTable extends Migration
+class CreateTestSummeriesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
-    //dummy table
+    //this belongs to  mobile test
     public function up()
     {
-        Schema::create('product_sales', function (Blueprint $table) {
+        Schema::create('test_summeries', function (Blueprint $table) {
+
             $table->increments('id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('optician_id');
             $table->unsignedInteger('patient_id');
-            $table->unsignedInteger('optician_detail_id'); // changed optician_id -> optician_detail_id
-            $table->date('warranty');
+            $table->date('date')->default(\Carbon\Carbon::now());
+
+            $table->boolean('isPass')->default(false);
+            $table->float('score')->default(0);
+
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ class CreateProductSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_sales');
+        Schema::dropIfExists('test_summeries');
     }
 }

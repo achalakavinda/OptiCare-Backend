@@ -18,8 +18,6 @@ class OpticianDetail extends Model
                 'latitude',
                 'longitude',
 
-
-
     ];
 
 
