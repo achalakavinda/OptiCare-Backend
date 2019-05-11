@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OpticianProductCreate;
+use App\Http\Requests\OpticianProductEdit;
 use App\Models\PatientDetail;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -169,9 +170,37 @@ class OpticianProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OpticianProductEdit $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $input = $request->all();
+
+        $files = $request->file('product_image_id');
+
+        if ($request->hasFile('product_image_id')) {
+
+            foreach ($files as $file) {
+
+                $name = time() . $file->getClientOriginalName();
+
+                $file->move('images', $name);
+
+                $productImage = ProductImage::create(['image' => $name]);
+
+                $input ['product_image_id'] = $productImage->id;
+            }
+
+
+
+
+
+
+        }
+
+                $product->update($input);
+
+                return redirect('/product');
     }
 
     /**
@@ -182,6 +211,12 @@ class OpticianProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        unlink(public_path().'/images/'. $product->productImage->image);
+
+        $product->delete();
+
+        return redirect('/product');
     }
 }

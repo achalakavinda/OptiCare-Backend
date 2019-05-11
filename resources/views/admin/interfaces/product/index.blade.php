@@ -44,7 +44,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>{!! $product->id !!}</td>
-                                    <td><img height="30"  src="{{$product->product_image_id ? $product->productImage->image [0] : '/images/No_image_available.svg'}}"> </td>
+                                    <td><img height="30"  src="{{'/images/'.$product->product_image_id ? '/images/'.$product->productImage->image : '/images/No_image_available.svg'}}"> </td>
                                     <td>{!! $product->name !!}</td>
                                     <td>{!! $product->productType->name !!}</td>
                                     <td>

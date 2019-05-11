@@ -41,6 +41,12 @@
                                     @include('admin.interfaces.product._partials.edit')
                                 {!! Form::close() !!}
 
+                                {!! Form::open (['method' =>'DELETE','action'=>['OpticianProductController@destroy',$product->id]]) !!}
+                                <div class="form-group">
+                                    {!! Form::submit ('Delete Product',['class'=>'btn btn-danger col-sm-5'])!!}
+                                </div>
+                                {!! Form::close() !!}
+
                             </div>
                     </div>      <!-- /.box -->
             <div>
