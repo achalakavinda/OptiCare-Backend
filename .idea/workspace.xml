@@ -2,26 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00db83d7-81b6-423c-b3d3-ae7bc5cf73c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticianProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticianProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/OpticianProductCreate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/OpticianProductCreate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProductImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductImage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_094655_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_094655_create_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1557514717Artboard 1@300x-100.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1557514773Artboard 3@300x-100.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1557515437Artboard 1@300x-100.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1557515948Artboard 1@300x-100.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1557515976Artboard 1@300x-100.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/155758357749864597_10213563125053518_2469809437347414016_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/155758377149864597_10213563125053518_2469809437347414016_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1557583997Specs-N-Lenses-Black-Rectangle-SDL272584076-1-8fa09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1557583997Specs-N-Lenses-Silver-Square-SDL762836394-1-cd6cd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1557584920Specs-N-Lenses-Black-Rectangle-SDL272584076-1-8fa09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/interfaces/product/_partials/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/interfaces/product/_partials/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/interfaces/product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/interfaces/product/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557680245nat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557680245rividu.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557680412nat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557680412rividu.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557680933nat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557680933rividu.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681142nat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681345nat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681345rividu.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681404nat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681404rividu.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681547nat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681547rividu.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681626nat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557681626rividu.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557682111images.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557682357index.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1557682357system_testing.jpg" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -178,11 +176,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/interfaces/product/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
               <caret line="57" column="37" lean-forward="true" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -382,6 +389,12 @@
             <path>
               <item name="OptiCare-Backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="OptiCare-Backend" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OptiCare-Backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OptiCare-Backend" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -488,11 +501,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16052000" />
+    <option name="totallyTimeSpent" value="16325000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27132195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -506,7 +518,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.15081967" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.13542795" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.30877572" />
@@ -520,19 +532,38 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add acl" />
     <MESSAGE value="change git ignore file" />
     <option name="LAST_COMMIT_MESSAGE" value="change git ignore file" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -773,6 +804,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="57" column="37" lean-forward="true" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
