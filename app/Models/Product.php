@@ -10,7 +10,6 @@ class Product extends Model
 
         'user_id',
         'patient_detail_id',
-        'product_image_id',
         'vision_id',
         'product_type_id',
         'name',
@@ -20,7 +19,7 @@ class Product extends Model
 
     public function productImage(){
 
-        return $this->belongsTo('App\Models\ProductImage');
+        return $this->belongsToMany('App\Models\ProductImage');
     }
 
     public function productType(){
