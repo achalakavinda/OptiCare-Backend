@@ -13,11 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
 Route::post('/login',function (Request $request){
     $arr = [
         'id'=>1,'username'=>'username', 'success'=>true, 'req'=>$request->all()
@@ -26,6 +21,23 @@ Route::post('/login',function (Request $request){
 });
 
 Route::post('/test/myopia',function (Request $request){
+
+    $CheckUp = \App\Models\CheckUp::create([
+        'optician_id'=>1,
+        'patient_id'=>1,
+        'date'=>\Carbon\Carbon::now(),
+        'type'=>'Myopia',
+        'isMobile'=>true,
+        'status'=>'Appointment',
+        'note'=>'Created By Opti-care Mobile App'
+    ]);
+
+    $Appoinment = \App\Models\Appointment::create([
+        'optician_id'=>$CheckUp->optician_id,
+        'patient_id'=>$CheckUp->patient_id,
+        'check_up_id'=>$CheckUp->id,
+    ]);
+
     return $request->all();
 });
 
