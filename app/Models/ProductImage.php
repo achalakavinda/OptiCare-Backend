@@ -9,14 +9,8 @@ class ProductImage extends Model
 
 
 
-    protected $guarded = [
-
-        'id',
+    protected $fillable = [
+        'product_id',
+        'image',
     ];
-
-
-    public function product(){
-
-        return $this->belongsTo('App\Models\Product');
-    }
 }

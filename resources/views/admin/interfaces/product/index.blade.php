@@ -44,19 +44,18 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>{!! $product->id !!}</td>
-                                            <td>
-                                                @foreach($images as $image)
-                                                    <img height="30"  src="{{$image->product_id ? '/images/'.$image->image  : '/images/No_image_available.svg'}}">
-                                                @endforeach
-                                            </td>
-                                            <td>{!! $product->name !!}</td>
-                                            <td>{!! $product->productType->name !!}</td>
-                                            <td>
-                                            <a href="{{route('product.edit',$product->id)}}"><i class="fa fa-paper-plane"></i></a>
-                                            </td>
+                                    <td>
+                                        @foreach($images as $image)
+                                            <img height="30"  src="{{'/images/'.$image->image ? '/images/'.$image->image : '/images/No_image_available.svg'}}">
 
+                                        @endforeach
+                                    </td>
+                                    <td>{!! $product->name !!}</td>
+                                    <td>{!! $product->productType->name !!}</td>
+                                    <td>
+                                    <a href="{{route('product.edit',$product->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                    </td>
                                 </tr>
-
                             @endforeach
                         @endif
                         </tbody>
