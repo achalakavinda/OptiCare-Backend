@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::Resource('/productType','ProductTypeController');
 
 
+
     Route::prefix('settings')->group(function () {
         Route::get('/','SettingController@index');
         Route::Resource('/access-control/permissions', 'PermissionsController');

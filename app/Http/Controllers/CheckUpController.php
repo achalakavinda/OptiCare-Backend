@@ -15,7 +15,7 @@ class CheckUpController extends Controller
     public function index()
     {
         $CheckUps = CheckUp::all();
-        return view('admin.interfaces.checkup.index',compact(['CheckUps']));
+        return view('admin.interfaces.checkup.index',compact('CheckUps'));
     }
 
     /**
@@ -25,7 +25,8 @@ class CheckUpController extends Controller
      */
     public function create()
     {
-        //
+        $optician = OpticianDetail::all();
+        return view('admin.interfaces.checkup.create');
     }
 
     /**
