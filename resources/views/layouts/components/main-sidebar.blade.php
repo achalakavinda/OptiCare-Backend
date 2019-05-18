@@ -25,6 +25,7 @@
 
             <li><a href="{{ url('/product') }}"><i class="fa fa-users"></i> <span>Product</span></a></li>
 
+            <li><a href="{{ url('/vision') }}"><i class="fa ion-ios-medical"></i> <span>Vision</span></a></li>
 
 
 

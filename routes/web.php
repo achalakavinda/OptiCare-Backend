@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::Resource('/productType','ProductTypeController');
 
+    Route::Resource('/vision','VisionController');
+
 
 
     Route::prefix('settings')->group(function () {
