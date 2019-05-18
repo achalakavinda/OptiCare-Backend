@@ -43,19 +43,19 @@
 
                             @foreach($CheckUps as $CheckUp)
                                 <tr>
-                                    <td>{!! $CheckUps->id !!}</td>
+                                    <td>{!! $CheckUp->id !!}</td>
                                     {{--<td>--}}
                                         {{--@foreach($images as $image)--}}
                                             {{--<img height="30"  src="{{'/images/'.$image->image ? '/images/'.$image->image : '/images/No_image_available.svg'}}">--}}
 
                                         {{--@endforeach--}}
                                     {{--</td>--}}
-                                    <td>{!! $CheckUps->optician_id !!}</td>
-                                    <td>{!! $CheckUps->patient_id!!}</td>
-                                    <td>{!! $CheckUps->type!!}</td>
-                                    <td>{!! $CheckUps->status!!}</td>
+                                    <td>{!! $CheckUp->optician_id !!}</td>
+                                    <td>{!! $CheckUp->patient_id!!}</td>
+                                    <td>{!! $CheckUp->type!!}</td>
+                                    <td>{!! $CheckUp->status!!}</td>
                                     <td>
-                                        <a href="{{route('product.edit',$product->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                        <a href="{{route('check-up.edit',$CheckUp->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

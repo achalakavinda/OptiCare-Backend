@@ -18,6 +18,37 @@
 <!-- main section -->
 @section('main-content')
 
+    <div class="row">
+
+        <div class="col-sm-9">
+            <!-- general form elements -->
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Information of {{$checkup->patient_id}}</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+                {!! Form::model($checkup,['method' =>'PATCH','action'=>['CheckUpController@update',$checkup->id],'class'=>'form-horizontal','id'=>'Form']) !!}
+
+                @include('error.error')
+                @include('admin.interfaces.checkup._partials.edit')
+                {!! Form::close() !!}
+
+                {{--{!! Form::open (['method' =>'DELETE','action'=>['CheckUpController@destroy',$checkup->id]]) !!}--}}
+                {{--<div class="form-group">--}}
+                    {{--{!! Form::submit ('Delete Product',['class'=>'btn btn-danger col-sm-5'])!!}--}}
+                {{--</div>--}}
+                {{--{!! Form::close() !!}--}}
+
+            </div>
+        </div>      <!-- /.box -->
+        <div>
+        </div>
+
+        <!-- /.row -->
+
 
 
 @endsection

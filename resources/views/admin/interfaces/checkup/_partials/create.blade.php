@@ -4,11 +4,11 @@
 
         <div class="form-group">
             {!! Form::label('optician_id','Optician') !!}
-            {!! Form::select ('optician_id',array('Generic'=>'Generic','Myopia'=>'Myopia','Hyperopia'=>'Hyperopia') ,null,['class'=>'form-control'])!!}
+            {!! Form::select ('optician_id',[''=>'Choose type']+ $optician ,null,['class'=>'form-control'])!!}
         </div>
         <div class="form-group">
             {!! Form::label('patient_id','patient') !!}
-            {!! Form::select ('patient_id',array('Generic'=>'Generic','Myopia'=>'Myopia','Hyperopia'=>'Hyperopia') ,null,['class'=>'form-control'])!!}
+            {!! Form::select ('patient_id',[''=>'Choose type'] +$patient ,null,['class'=>'form-control'])!!}
         </div>
 
 
@@ -24,17 +24,17 @@
 
         <div class="form-group">
             {!! Form::label('isMobile','Mobile or Other') !!}
-            {!! Form::select ('isMobile',array(1=>'true',0=>'false'),null,['class'=>'form-control'])!!}
+            {!! Form::select ('isMobile',array(1=>'Mobile',0=>'Other'),null,['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
             {!! Form::label('status','Status') !!}
-            {!! Form::select ('status',array(0=>'Pending',1=>'Close',3=>'Appointment'),null,['class'=>'form-control'])!!}
+            {!! Form::select ('status',array('Pending'=>'Pending','Close'=>'Close','Appointment'=>'Appointment'),null,['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
             {!! Form::label('note','Note:') !!}
-            {!! Form::text ('note',null,['class'=>'form-control'])!!}
+            {!! Form::textarea ('note',null,['class'=>'form-control'])!!}
         </div>
     </div>
 </div>

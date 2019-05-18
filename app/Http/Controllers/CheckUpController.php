@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckupCreate;
+use App\Http\Requests\CheckupEdit;
 use App\Models\CheckUp;
+use App\Models\OpticianDetail;
+use App\Models\PatientDetail;
+use App\User;
 use Illuminate\Http\Request;
 
 class CheckUpController extends Controller
@@ -14,6 +19,7 @@ class CheckUpController extends Controller
      */
     public function index()
     {
+
         $CheckUps = CheckUp::all();
         return view('admin.interfaces.checkup.index',compact('CheckUps'));
     }
@@ -25,8 +31,11 @@ class CheckUpController extends Controller
      */
     public function create()
     {
-        $optician = OpticianDetail::all();
-        return view('admin.interfaces.checkup.create');
+
+        $optician = OpticianDetail::pluck('shop_name','id')->all();
+        $patient = User::where('type','patient')->pluck('name','id')->all();
+//
+        return view('admin.interfaces.checkup.create',compact('optician','patient'));
     }
 
     /**
@@ -35,9 +44,15 @@ class CheckUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CheckupCreate $request)
     {
-        //
+
+        $input = $request->all();
+
+        CheckUp::create($input);
+
+        return redirect('check-up');
+
     }
 
     /**
@@ -59,7 +74,12 @@ class CheckUpController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $checkup = CheckUp::findOrFail($id);
+        $optician = OpticianDetail::pluck('shop_name','id')->all();
+        $patient = User::where('type','patient')->pluck('name','id')->all();
+
+        return view('admin.interfaces.checkup.edit',compact('checkup','optician','patient'));
     }
 
     /**
@@ -69,9 +89,13 @@ class CheckUpController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CheckupEdit $request, $id)
     {
-        //
+        $checkup = CheckUp::findOrFail($id);
+
+        $checkup->update($request->all());
+
+        return redirect('check-up');
     }
 
     /**
