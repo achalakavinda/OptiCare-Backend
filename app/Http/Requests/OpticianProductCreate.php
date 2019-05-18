@@ -25,9 +25,11 @@ class OpticianProductCreate extends FormRequest
     {
         return [
 
-            'product_type_id',
-            'name',
-            'description',
+            'product_type_id'   => 'required',
+            'name'              => 'required',
+            'description'       => 'required',
+            'product_image_id'  => 'required',
+            'product_image_id'  => 'mimes:doc,pdf,docx,zip',
 
 
 

@@ -11,10 +11,12 @@ class ProductImage extends Model
 
     protected $guarded = [
 
-        'product_id',
-        'front_url',
-        'left_side_url',
-        'right_side_url',
-
+        'id',
     ];
+
+
+    public function product(){
+
+        return $this->belongsTo('App\Models\Product');
+    }
 }

@@ -10,6 +10,7 @@ use App\Models\ProductImage;
 use App\Models\ProductSale;
 use App\Models\ProductType;
 use App\Models\Vision;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,8 +25,9 @@ class OpticianProductController extends Controller
     {
         //optician specific products
         $products = Product::all();
+        $images = ProductImage::all();
 
-        return view('admin.interfaces.product.index',compact('products'));
+        return view('admin.interfaces.product.index', compact('products','images'));
 
 
     }
@@ -38,64 +40,64 @@ class OpticianProductController extends Controller
     public function create()
     {
 //            $productType = ProductType::all();
-            $productVision = Vision::pluck('id')->all();
-            $productPatient = PatientDetail::pluck('contact_number','id')->all();
+        $productVision = Vision::pluck('id')->all();
+        $productPatient = PatientDetail::pluck('contact_number', 'id')->all();
 //        $productType->productType()->pluck('name','id')->all();
-        $productType = ProductType::pluck('name','id')->all();
+        $productType = ProductType::pluck('name', 'id')->all();
 
-        return view('admin.interfaces.product.create',compact('productType','productVision','productPatient'));
+        return view('admin.interfaces.product.create', compact('productType', 'productVision', 'productPatient'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(OpticianProductCreate $request)
     {
 
-       $input = $request->all();
-
-       $user = Auth::user();
-
-       $files = $request->file('product_image_id');
-
-       if($request->hasFile('product_image_id')){
-
-           foreach ($files as $file){
-
-               $name = time(). $file->getClientOriginalName();
-
-               $file->move('images',$name);
-
-               $productImage = ProductImage::create(['image'=>$name]);
-
-               $input ['product_image_id'] = $productImage->id;
-           }
+        $input = $request->all();
 
 
-       }
 
-                $user->products()->create($input);
+        $user = Auth::user();
 
-//        if( $file = $request->file('product_image_id')){
 //
-//            $name = time(). $file->getClientOriginalName();
+        $product = $user->products()->create($input);
+
+//        $inputId = $product->id;
+
+
+
+
+        $files = $request->file('image');
+
+        if ($request->hasFile('image')) {
+
+            foreach ($files as $file) {
+
+                $name = time() . $file->getClientOriginalName();      //append time with clientName
+
+                $file->move('images', $name);             //move the file to images folder
+
+//              ProductImage::create(['image'=>$name,'product_id'=>$input->id,]);
+
+                $product->productImage()->create([
+                    'image'=>$name,
+                    'product_id' => $product->id,
+
+                ]);
+
+            }
+
+
+
+        }
+
+
+
 //
-//            $file->move('images',$name);
-//
-//            $avatar = ProductImage::create(['image'=>$name]);
-//
-//            $input ['product_image_id'] = $avatar->id;
-//
-//        }
-
-
-
-
-
-
 
 
 
@@ -119,7 +121,7 @@ class OpticianProductController extends Controller
 //        }
 //
 ////        $user->products()->create($request->all());
-//        Product::create([
+//          Product::create([
 //
 //            'user_id'               =>  $user->id,
 //            'vision_id'             =>  1,
@@ -129,8 +131,7 @@ class OpticianProductController extends Controller
 //        ]);
 
 
-            return redirect('/product');
-
+        return redirect('/product');
 
 
     }
@@ -138,7 +139,7 @@ class OpticianProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -149,7 +150,7 @@ class OpticianProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -157,17 +158,17 @@ class OpticianProductController extends Controller
         $product = Product::findOrFail($id);
 
         $productVision = Vision::pluck('id')->all();
-        $productPatient = PatientDetail::pluck('contact_number','id')->all();
-        $productType = ProductType::pluck('name','id')->all();
+        $productPatient = PatientDetail::pluck('contact_number', 'id')->all();
+        $productType = ProductType::pluck('name', 'id')->all();
 
-        return view('admin.interfaces.product.edit',compact('product','productVision','productPatient','productType'));
+        return view('admin.interfaces.product.edit', compact('product', 'productVision', 'productPatient', 'productType'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(OpticianProductEdit $request, $id)
@@ -206,7 +207,7 @@ class OpticianProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
