@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VisionCreate;
+use App\Http\Requests\VisionEdit;
+use App\Models\CheckUp;
+use App\Models\OpticianDetail;
 use App\Models\Vision;
+use App\User;
 use Illuminate\Http\Request;
 
 class VisionController extends Controller
@@ -26,7 +31,10 @@ class VisionController extends Controller
      */
     public function create()
     {
-        //
+        $checkup = CheckUp::pluck('id')->all();
+        $optician = OpticianDetail::pluck('shop_name','id')->all();
+        $patient = User::where('type','patient')->pluck('name','id')->all();
+        return view('admin.interfaces.vision.create',compact('optician','patient','checkup'));
     }
 
     /**
@@ -35,9 +43,11 @@ class VisionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VisionCreate $request)
     {
-        //
+        Vision::create($request->all());
+
+        return redirect('/vision');
     }
 
     /**
@@ -59,7 +69,12 @@ class VisionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vision = Vision::findORFail($id);
+        $checkup = CheckUp::pluck('id')->all();
+        $optician = OpticianDetail::pluck('shop_name','id')->all();
+        $patient = User::where('type','patient')->pluck('name','id')->all();
+
+        return view('admin.interfaces.vision.edit',compact('vision','checkup','optician','patient'));
     }
 
     /**
@@ -69,9 +84,13 @@ class VisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(VisionEdit $request, $id)
     {
-        //
+        $vision  = Vision::findOrFail($id);
+
+        $vision->update($request->all());
+
+        return redirect('/vision');
     }
 
     /**

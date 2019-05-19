@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vision extends Model
 {
 
-
+    protected $guarded = ['id'];
 
     public function patient(){
 

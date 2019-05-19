@@ -3,34 +3,72 @@
     <div class="col-md-6">
 
             <div class="form-group">
-                {!! Form::label('name','Name:') !!}
-                {!! Form::text ('name',null,['class'=>'form-control'])!!}
+                {!! Form::label('optician_id','Optician ID') !!}
+                {!! Form::select ('optician_id',[''=>'Choose Type'] +$optician ,null,['class'=>'form-control'])!!}
             </div>
 
             <div class="form-group">
-                    {!! Form::label('product_type_id','Product Type') !!}
-                    {!! Form::select ('product_type_id',[''=>'Choose Type']+ $productType ,null,['class'=>'form-control'])!!}
+                    {!! Form::label('patient_id','Patient ID') !!}
+                    {!! Form::select ('patient_id',[''=>'Choose Type']+ $patient ,null,['class'=>'form-control'])!!}
+            </div>
+
+            {{--<div class="form-group">--}}
+                    {{--{!! Form::label('patient_id','Patient ID') !!}--}}
+                    {{--{!! Form::select ('patient_id',[''=>'Choose Type']+ $productType ,null,['class'=>'form-control'])!!}--}}
+            {{--</div>--}}
+
+            <div class="form-group">
+                    {!! Form::label('check_up_id','Check up ID') !!}
+                    {!! Form::select ('check_up_id',[''=>'Choose Type']+ $checkup ,null,['class'=>'form-control'])!!}
             </div>
 
             <div class="form-group">
-                    {!! Form::label('vision_id','Vision :') !!}
-                    {!! Form::select ('vision_id',[1=>'Choose Type'] + $productVision,null,['class'=>'form-control'])!!}
+                    {!! Form::label('l_sphere','Left | Sphere') !!}
+                    {!! Form::text ('l_sphere',null,['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                    {!! Form::label('l_cyl','Left | CYL') !!}
+                    {!! Form::text ('l_cyl',null,['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                    {!! Form::label('l_axis','Left | Axis') !!}
+                    {!! Form::text ('l_axis',null,['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                    {!! Form::label('l_add','Left | Add') !!}
+                    {!! Form::text ('l_add',null,['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                    {!! Form::label('l_p&b','Left | P&B') !!}
+                    {!! Form::text ('l_p&b',null,['class'=>'form-control'])!!}
             </div>
 
-            <div class="form-group">
-                {!! Form::label('patient_detail_id','Patient Name :') !!}
-                {!! Form::select ('patient_detail_id',[''=>'Choose Type'] + $productPatient,null,['class'=>'form-control'])!!}
-            </div>
+
 
             <div class="form-group">
-                    {!! Form::label('description','Description:') !!}
-                    {!! Form::text ('description',null,['class'=>'form-control'])!!}
+                    {!! Form::label('r_sphere&b','Right | Sphere') !!}
+                    {!! Form::text ('r_sphere',null,['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                    {!! Form::label('r_cyl','Right | CYL') !!}
+                    {!! Form::text ('r_cyl',null,['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                    {!! Form::label('r_axis','Right | Axis') !!}
+                    {!! Form::text ('r_axis',null,['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                    {!! Form::label('r_add','Right | Add') !!}
+                    {!! Form::text ('r_add',null,['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                    {!! Form::label('r_p&b','Right | P&B') !!}
+                    {!! Form::text ('r_p&b',null,['class'=>'form-control'])!!}
             </div>
 
-            <div class="form-group">
-                    {!! Form::label('image[]','Image:') !!}
-                    {!! Form::file ('image[]',array('multiple'=>true,'accept'=>'image/*'),['class'=>'form-control'])!!}
-            </div>
+
+
+
     </div>
 </div>
 <!-- /.box-body -->
