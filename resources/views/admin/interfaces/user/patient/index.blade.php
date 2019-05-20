@@ -36,9 +36,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if($patients)
-
-                            @foreach($patients as $patient)
+                        @foreach($patients as $patient)
                                 <tr>
                                     <td>{!! $patient->id !!}</td>
                                     <td><img height="30"  src="{{$patient->user->avatar ? $patient->user->avatar->file : '/images/No_image_available.svg'}}"> </td>
@@ -49,7 +47,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        @endif
                         </tbody>
                     </table>
                 </div>
