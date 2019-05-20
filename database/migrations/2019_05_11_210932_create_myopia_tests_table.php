@@ -22,6 +22,7 @@ class CreateMyopiaTestsTable extends Migration
             $table->string('Constant');
             $table->string('Answer');
             $table->string('Result');
+            $table->float('point')->default(0);
 
             $table->timestamps();
         });

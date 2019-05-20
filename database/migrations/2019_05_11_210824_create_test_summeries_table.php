@@ -22,6 +22,8 @@ class CreateTestSummeriesTable extends Migration
             $table->date('date')->default(\Carbon\Carbon::now());
 
             $table->boolean('isPass')->default(false);
+            $table->boolean('isCheckupCreated')->default(false);
+            $table->boolean('isAppointmentCreated')->default(false);
             $table->float('score')->default(0);
 
             $table->timestamps();

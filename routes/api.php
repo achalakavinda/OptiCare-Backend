@@ -22,23 +22,65 @@ Route::post('/login',function (Request $request){
 
 Route::post('/test/myopia',function (Request $request){
 
-    $CheckUp = \App\Models\CheckUp::create([
-        'optician_id'=>1,
-        'patient_id'=>1,
-        'date'=>\Carbon\Carbon::now(),
-        'type'=>'Myopia',
-        'isMobile'=>true,
-        'status'=>'Appointment',
-        'note'=>'Created By Opti-care Mobile App'
-    ]);
+   try {
+       if( $request->all() and $request->Data!= null)
+       {
+           $DataArray = json_decode($request->Data,true);
 
-    $Appoinment = \App\Models\Appointment::create([
-        'optician_id'=>$CheckUp->optician_id,
-        'patient_id'=>$CheckUp->patient_id,
-        'check_up_id'=>$CheckUp->id,
-    ]);
+//               $CheckUp = \App\Models\CheckUp::create([
+//                    'optician_id'=>1,
+//                    'patient_id'=>1,
+//                    'date'=>\Carbon\Carbon::now(),
+//                    'type'=>'Myopia',
+//                    'isMobile'=>true,
+//                    'status'=>'Appointment',
+//                    'note'=>'Created By Opti-care Mobile App'
+//                ]);
+//
+//                \App\Models\Appointment::create([
+//                    'optician_id'=>$CheckUp->optician_id,
+//                    'patient_id'=>$CheckUp->patient_id,
+//                    'check_up_id'=>$CheckUp->id,
+//                ]);
 
-    return $request->all();
+           $TestSummry = \App\Models\TestSummery::create([
+                'optician_id'=>1,
+                'patient_id'=>1,
+           ]);
+
+           foreach ($DataArray as $item){
+               try {
+                   $patient_id = $item['patient_id'];
+                   $optician_id = $item['optician_id'];
+                   $Constant = $item['Constant'];
+                   $Answer = $item['Answer'];
+                   $Result = $item['Result'];
+                   $Point = $item['Point'];
+
+                   \App\Models\MyopiaTest::create([
+                       'test_summery_id'=>$TestSummry->id,
+                       'patient_id'=>$patient_id,
+                       'optician_id'=>$optician_id,
+                       'Constant'=>$Constant,
+                       'Answer'=>$Answer,
+                       'Result'=>$Result,
+                       'point'=>$Point
+                   ]);
+
+               } catch (Exception $exception){
+                   //do nothing
+               }
+           }
+
+           return ['status'=>true,'message'=>'Pass Test data','body'=>$DataArray];
+
+       }else
+           {
+           return ['status'=>false,'message'=>'Pass Empty Test data'];
+       }
+   } catch (Exception $exception){
+       return ['status'=>false,'message'=>$exception->getMessage()];
+   }
 });
 
 
