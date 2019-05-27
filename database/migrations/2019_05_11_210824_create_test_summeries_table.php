@@ -21,6 +21,8 @@ class CreateTestSummeriesTable extends Migration
             $table->unsignedInteger('patient_id');
             $table->date('date')->default(\Carbon\Carbon::now());
 
+            $table->enum('type',['myopia','hyperpia']);
+
             $table->boolean('isPass')->default(false);
             $table->boolean('isCheckupCreated')->default(false);
             $table->boolean('isAppointmentCreated')->default(false);
