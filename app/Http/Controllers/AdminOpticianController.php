@@ -25,9 +25,9 @@ class AdminOpticianController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * renders the database model (OpticianDetail) with the View and pass it as a URL request
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function create()
     {
@@ -35,13 +35,15 @@ class AdminOpticianController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create form View will be returned
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(AdminOpticianCreate $request)
     {
+
+            // get all the passed values to the variable , so it can be modified
 
             $input  = $request->all();
 
@@ -52,10 +54,15 @@ class AdminOpticianController extends Controller
             }else{
 
                 $input = $request->all();
+                //password encrypting
                 $input ['password'] = bcrypt($request->password);
 
             }
-
+                /*
+                 * get the user avatar and append the file with time and logged in users name.
+                 * move the file to the named folder
+                 *
+                 */
             if( $file = $request->file('avatar_id')){
 
                 $name = time(). $file->getClientOriginalName();
@@ -71,9 +78,9 @@ class AdminOpticianController extends Controller
 //            return $input;
            $user = User::create($input);
 
-//
-//
-//
+            /*
+             *  get the necessary values for the relevant form id and create the user type optician
+             */
             $user->optician()->create([
                 'user_id'                       => $user->id,
                 'shop_name'                     => $request->shop_name,

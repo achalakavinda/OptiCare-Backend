@@ -68,7 +68,11 @@ class CheckUpController extends Controller
 
     public function UserCheckUp($id){
 
-        //show user specific checkups
+
+        $checkup = CheckUp::findOrFail($id);
+
+        return view('admin.interfaces.checkup.editStatus',compact('checkup'));
+
 
     }
 

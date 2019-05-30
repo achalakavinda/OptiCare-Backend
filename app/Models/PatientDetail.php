@@ -26,4 +26,10 @@ class PatientDetail extends Model
         return $this->hasMany('App\Models\Product');
     }
 
+    public function checkup () {
+
+        return $this->belongsTo('App\Models\CheckUp');
+
+    }
+
 }

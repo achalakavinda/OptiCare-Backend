@@ -25,8 +25,8 @@ class CheckupEdit extends FormRequest
     {
         return [
 
-            'optician_id' => 'required',
-            'patient_id' => 'required',
+//            'optician_id' => 'required',
+//            'patient_id' => 'required',
             'date' => 'required',
             'type' => 'required',
             'isMobile' => 'required',
