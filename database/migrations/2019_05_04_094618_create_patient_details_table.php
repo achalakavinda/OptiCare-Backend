@@ -16,6 +16,7 @@ class CreatePatientDetailsTable extends Migration
         Schema::create('patient_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('optician_detail_id');
             $table->string('address');
             $table->string('contact_number');
             $table->date('birthday');

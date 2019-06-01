@@ -13,6 +13,7 @@ class PatientDetail extends Model
         'address',
         'contact_number',
         'birthday',
+        'optician_detail_id',
 
     ];
 

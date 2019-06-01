@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 {!! Form::label('type','*User Type',['class' => 'control-label']) !!}
-                {!! Form::select('type',array('admin'=>'Admin'),null,['class'=>'form-control','id'=>'role']) !!}
+                {!! Form::select('type',['admin'=>'Admin'],null,['class'=>'form-control','id'=>'role']) !!}
             </div>
 
             <div class="form-group">

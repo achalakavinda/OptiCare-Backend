@@ -14,8 +14,14 @@
 
             <div class="form-group">
                 {!! Form::label('type','*User Type',['class' => 'control-label']) !!}
-                {!! Form::select('type',array('patient'=>'Patient'),null,['class'=>'form-control','id'=>'role']) !!}
+                {!! Form::select('type',['patient'],null,['class'=>'form-control','id'=>'role']) !!}
             </div>
+
+            <div class="form-group">
+                    {!! Form::hidden('optician_detail_id','*User Type',['class' => 'control-label']) !!}
+                    {!! Form::hidden('optician_detail_id',null,['class'=>'form-control']) !!}
+            </div>
+
 
             <div class="form-group">
                     {!! Form::label('is_active','Status:') !!}

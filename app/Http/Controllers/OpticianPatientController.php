@@ -48,7 +48,10 @@ class OpticianPatientController extends Controller
     public function store(OpticianPatientCreate $request)
     {
 
+
+
         $input = $request->all();
+        $currentUser = Auth::user();
 
         if(trim($request->password) ==''){
 
@@ -76,9 +79,11 @@ class OpticianPatientController extends Controller
 
             $user = User::create($input);
 
+
             $user->patients()->create([
 
                 'user_id'           => $user->id,
+                'optician_detail_id'=> 1,
                 'address'           => $request->address,
                 'contact_number'    => $request->contact_number ,
                 'birthday'          => $request->birthday,

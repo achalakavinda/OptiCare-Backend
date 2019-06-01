@@ -14,13 +14,12 @@ class TestSummeryController extends Controller
      */
     public function index()
     {
-        //
     }
 
     public function UserTestSummery($id)
     {
-        $TestSummery = TestSummery::where('patient_id',$id)->get();
-        return 'die';
+        $TestSummaries = TestSummery::where('patient_id',$id)->get();
+        return view('admin.interfaces.testSummery.show',compact('TestSummaries'));
     }
 
     /**

@@ -27,9 +27,10 @@ class OpticianPatientCreate extends FormRequest
 
             'name'           => 'required',
             'email'          => 'required',
-            'type'        => 'required',
+            'type'           => 'required',
             'is_active'      =>'required',
             'password'       => 'required',
+//            'optician_detail_id' => 'required',
 
             'address'       => 'required',
             'contact_number'=> 'required',

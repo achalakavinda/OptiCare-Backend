@@ -17,11 +17,13 @@
 
 <!-- main section -->
 @section('main-content')
-    <div class="row">
+    <div class="row-xs-12">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <a href="{{route('patient.create')}}" class="btn btn-sm btn-danger">New <i class="fa fa-plus-square"></i></a>
+
+                    <a href="{{route('check-up.create')}}" class="btn btn-sm btn-danger">New Check up <i class="fa fa-plus-square"></i></a>
+
                 </div>
                 <!-- /.box-header -->
                 <div style="overflow: auto" class="box-body">
@@ -29,34 +31,35 @@
                         <thead>
                         <tr>
                             <th>#ID</th>
-                            <th>Avatar</th>
-                            <th>Name</th>
-                            <th>Contact Number</th>
-                            <th>Checkups<i class="fa fa-paper-plane"></i></th>
-                            <th>Test Summery reports<i class="fa fa-paper-plane"></i></th>
+                            <th>Optician ID</th>
+                            <th>Patient ID</th>
+                            <th>Type</th>
+                            <th>Status</th>
                             <th>View <i class="fa fa-paper-plane"></i></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($patients as $patient)
+                        @if($CheckUps)
+
+                            @foreach($CheckUps as $CheckUp)
                                 <tr>
-                                    <td>{!! $patient->id !!}</td>
-                                    <td><img height="30"  src="{{$patient->user->avatar ? $patient->user->avatar->file : '/images/No_image_available.svg'}}"> </td>
-                                    <td>{!! $patient->user->name !!}</td>
-                                    <td>{!! $patient->contact_number !!}</td>
-                                    <td>
-                                        <a href="user/{{$patient->id}}/check-up"><i class="fa fa-paper-plane"></i></a>
-                                    </td>
+                                    <td>{!! $CheckUp->id !!}</td>
+                                    {{--<td>--}}
+                                    {{--@foreach($images as $image)--}}
+                                    {{--<img height="30"  src="{{'/images/'.$image->image ? '/images/'.$image->image : '/images/No_image_available.svg'}}">--}}
 
+                                    {{--@endforeach--}}
+                                    {{--</td>--}}
+                                    <td>{!! $CheckUp->optician_id !!}</td>
+                                    <td>{!! $CheckUp->patient_id!!}</td>
+                                    <td>{!! $CheckUp->type!!}</td>
+                                    <td>{!! $CheckUp->status!!}</td>
                                     <td>
-                                        <a href="user/{{$patient->id}}/test-summery"><i class="fa fa-paper-plane"></i></a>
-                                    </td>
-
-                                    <td>
-                                        <a href="{{route('patient.edit',$patient->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                        <a href="{{route('check-up.edit',$CheckUp->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -66,8 +69,13 @@
         </div>
         <!-- /.col -->
     </div>
+
+
     <!-- /.row -->
 @endsection
+
+
+
 <!-- /main section -->
 
 @section('js')

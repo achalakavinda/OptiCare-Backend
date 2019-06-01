@@ -22,9 +22,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/user/{id}/test-summery','TestSummeryController@UserTestSummery');
 
-    Route::get('/user/{id}/check-up','CheckUpController@UserCheckUp');
+    Route::get('/user/{id}/check-up','CheckUpController@UserCheckUp'); // done
 
-//    Route::get('/user/{id}/appointment','CheckUpController@UserCheckUp');
+    Route::get('/user/{id}/appointment','CheckUpController@UserCheckUp'); // under construction
 
     Route::Resource('/check-up','CheckUpController');
 

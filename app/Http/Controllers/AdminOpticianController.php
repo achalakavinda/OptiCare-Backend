@@ -77,6 +77,7 @@ class AdminOpticianController extends Controller
 
 //            return $input;
            $user = User::create($input);
+           
 
             /*
              *  get the necessary values for the relevant form id and create the user type optician

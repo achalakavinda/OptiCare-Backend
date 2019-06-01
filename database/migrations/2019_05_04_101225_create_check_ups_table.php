@@ -27,6 +27,9 @@ class CreateCheckUpsTable extends Migration
             $table->text('note')->nullable();
 
             $table->timestamps();
+
+
+
         });
     }
 
