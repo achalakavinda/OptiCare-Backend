@@ -22,7 +22,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/user/{id}/test-summery','TestSummeryController@UserTestSummery');
 
-    Route::get('/user/{id}/check-up','CheckUpController@UserCheckUp'); // done
+    Route::get('/check-up/user/{id}/check-up','CheckUpController@UserCheckUp'); // done
+
+    Route::patch('/check-up/user/{id}/check-up','CheckUpController@updateStatus'); // done
+
 
     Route::get('/user/{id}/appointment','CheckUpController@UserCheckUp'); // under construction
 

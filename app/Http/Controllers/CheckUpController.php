@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckupCreate;
 use App\Http\Requests\CheckupEdit;
+use App\Http\Requests\UpdateStatus;
 use App\Models\CheckUp;
 use App\Models\OpticianDetail;
 use App\Models\PatientDetail;
 use App\User;
 use Illuminate\Http\Request;
+use vendor\project\StatusTest;
 
 class CheckUpController extends Controller
 {
@@ -63,10 +65,15 @@ class CheckUpController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $chekups = CheckUp::findOrFail($id)->all();
+
+        return view('admin.interfaces.checkup.show',compact('chekups'));
+
     }
 
     public function UserCheckUp($id){
+
 
 
         $checkup = CheckUp::findOrFail($id);
@@ -74,6 +81,15 @@ class CheckUpController extends Controller
         return view('admin.interfaces.checkup.editStatus',compact('checkup'));
 
 
+    }
+
+    public function updateStatus(UpdateStatus $request, $id)
+    {
+        $checkup = CheckUp::findOrFail($id);
+
+        $checkup->update($request->all());
+
+        return redirect('/check-up/'.$id);
     }
 
     /**

@@ -4,13 +4,13 @@
 @section('main-content-header')
 
     <!-- Default box -->
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Dashboard</h3>
-        </div>
-    @include('admin.widgets.header-widgets')
-    <!-- /.box-body -->
-    </div>
+    {{--<div class="box">--}}
+        {{--<div class="box-header with-border">--}}
+            {{--<h3 class="box-title">Dashboard</h3>--}}
+        {{--</div>--}}
+    {{--@include('admin.widgets.header-widgets')--}}
+    {{--<!-- /.box-body -->--}}
+    {{--</div>--}}
     <!-- /.box -->
 @endsection
 <!-- /main header section -->
@@ -25,12 +25,12 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Edit Information of {{$checkup->patient_id}}</h3>
+                    <h3 class="box-title">Update Status</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
 
-                {!! Form::model($checkup,['method' =>'PATCH','action'=>['CheckUpController@update',$checkup->id],'class'=>'form-horizontal','id'=>'Form']) !!}
+                {!! Form::model($checkup,['method' =>'PATCH','action'=>['CheckUpController@updateStatus',$checkup->id],'class'=>'form-horizontal','id'=>'Form']) !!}
 
                 @include('error.error')
                 @include('admin.interfaces.checkup._partials.editStatus')

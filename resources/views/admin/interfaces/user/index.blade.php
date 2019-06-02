@@ -42,7 +42,7 @@
                             @foreach($Users as $user)
                                 <tr>
                                     <td>{!! $user->id !!}</td>
-                                    <td><img height="30"  src="{{$user->avatar ? $user->avatar->file : '/images/No_image_available.svg'}}"> </td>
+                                    <td><img height="30"  src="{{$user->avatar ? $user->avatar->file : '/images/noImage.png'}}"> </td>
                                     <td>{!! $user->name !!}</td>
                                     <td>{!! $user->email !!}</td>
                                     <td>{!! $user->is_active == 1 ? 'Active' : 'In-Active' !!}</td>

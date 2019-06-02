@@ -41,7 +41,7 @@
                             @foreach($opticians as $optician)
                                 <tr>
                                     <td>{!! $optician->id !!}</td>
-                                    <td><img height="30"  src="{{$optician->user->avatar ? $optician->user->avatar->file : '/images/No_image_available.svg'}}"> </td>
+                                    <td><img height="30"  src="{{$optician->user->avatar ? $optician->user->avatar->file : '/images/noImage.png'}}"> </td>
                                     <td>{!! $optician->shop_name !!}</td>
                                     <td>{!! $optician->contact_number !!}</td>
                                     <td>

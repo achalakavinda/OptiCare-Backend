@@ -41,12 +41,16 @@
                         @foreach($patients as $patient)
                                 <tr>
                                     <td>{!! $patient->id !!}</td>
-                                    <td><img height="30"  src="{{$patient->user->avatar ? $patient->user->avatar->file : '/images/No_image_available.svg'}}"> </td>
+                                    <td><img height="30"  src="{{$patient->user->avatar ? $patient->user->avatar->file : '/images/noImage.png'}}"> </td>
                                     <td>{!! $patient->user->name !!}</td>
                                     <td>{!! $patient->contact_number !!}</td>
+
                                     <td>
-                                        <a href="user/{{$patient->id}}/check-up"><i class="fa fa-paper-plane"></i></a>
+                                    <a href="{{route('check-up.show',$patient->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>
+                                    {{--<td>--}}
+                                        {{--<a href="user/{{$patient->id}}/check-up"><i class="fa fa-paper-plane"></i></a>--}}
+                                    {{--</td>--}}
 
                                     <td>
                                         <a href="user/{{$patient->id}}/test-summery"><i class="fa fa-paper-plane"></i></a>
