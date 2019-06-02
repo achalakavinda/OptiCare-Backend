@@ -32,6 +32,7 @@
                             <th>Avatar</th>
                             <th>Name</th>
                             <th>Contact Number</th>
+                            <th>Vision Report</th>
                             <th>Checkups<i class="fa fa-paper-plane"></i></th>
                             <th>Test Summery reports<i class="fa fa-paper-plane"></i></th>
                             <th>View <i class="fa fa-paper-plane"></i></th>
@@ -44,7 +45,9 @@
                                     <td><img height="30"  src="{{$patient->user->avatar ? $patient->user->avatar->file : '/images/noImage.png'}}"> </td>
                                     <td>{!! $patient->user->name !!}</td>
                                     <td>{!! $patient->contact_number !!}</td>
-
+                                    <td>
+                                        <a href="{{route('vision.show',$patient->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                    </td>
                                     <td>
                                     <a href="{{route('check-up.show',$patient->id)}}"><i class="fa fa-paper-plane"></i></a>
                                     </td>

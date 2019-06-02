@@ -58,7 +58,11 @@ class VisionController extends Controller
      */
     public function show($id)
     {
-        //
+        $visions = Vision::findOrFail($id)->all();
+
+        return view('admin.interfaces.vision.show',compact('visions'));
+
+
     }
 
     /**
