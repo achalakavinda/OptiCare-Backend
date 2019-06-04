@@ -21,7 +21,13 @@ class OpticianPatientController extends Controller
     public function index()
     {
 
-        $patients = PatientDetail::all();
+        if(Auth::user()->type === "admin"){
+            $patients = User::where('type','patient')->get();
+        }else{
+            $patients = User::where(['type'=>'patient','optician_id'=>Auth::id()])->get();
+        }
+
+
 
         return view('admin.interfaces.user.patient.index',compact('patients'));
 
@@ -47,51 +53,37 @@ class OpticianPatientController extends Controller
      */
     public function store(OpticianPatientCreate $request)
     {
-
-
-
-        $input = $request->all();
-        $currentUser = Auth::user();
-
         if(trim($request->password) ==''){
-
-            $input = $request->except('password');
-
-        }else{
-
-            $input = $request->all();
-            $input ['password'] = bcrypt($request->password);
-
+            $request->except('password');
         }
 
-        if($file = $request->file('avatar_id')){
+        $user = User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=> bcrypt($request->password),
+            'optician_id'=> $request->optician_id,
+            'type'=>'patient',
+            'is_active'=>$request->is_active
+        ]);
 
-            $name = time(). $file->getClientOriginalName();
-
-            $file->move('images',$name);
-
-            $avatar = Avatar::create(['file' => $name]);
-
-            $input['avatar_id'] = $avatar->id;
-
-
-        }
-
-            $user = User::create($input);
-
-
-            $user->patients()->create([
-
+        PatientDetail::create([
                 'user_id'           => $user->id,
-                'optician_detail_id'=> 1,
+                'optician_detail_id'=> $request->optician_id,
                 'address'           => $request->address,
                 'contact_number'    => $request->contact_number ,
                 'birthday'          => $request->birthday,
-
             ]);
 
-            return redirect('/patient');
+         if($file = $request->file('avatar_id'))
+         {
+             $name = time(). $file->getClientOriginalName();
+             $file->move('images',$name);
+             $avatar = Avatar::create(['file' => $name]);
+             $user->avatar_id = $avatar->id;
+             $user->save();
+         }
 
+            return redirect('/patient');
     }
 
     /**

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
 
             $table->string('avatar_id')->nullable();
+            $table->integer('optician_id')->nullable();
 //           $table->integer('role_id')->index()->unsigned()->nullable();
 
             // app specific columns.

@@ -72,8 +72,6 @@ class UserController extends Controller
             $input ['avatar_id'] = $avatar->id;
         }
 
-
-
             User::create($input);
 
 
