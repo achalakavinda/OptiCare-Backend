@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Avatar;
 use App\Http\Requests\OpticianPatientCreate;
 use App\Http\Requests\OpticianPatientEdit;
+use App\Models\OpticianDetail;
 use App\Models\PatientDetail;
 use App\User;
 use function GuzzleHttp\Promise\all;
@@ -77,10 +78,20 @@ class OpticianPatientController extends Controller
 
         }
 
-            $user = User::create($input);
+
+                $user = User::create([
+
+                    'name' => $input ['name'],
+                    'email'=> $input ['email'],
+                    'password' => $input ['password'],
+                    'avatar_id'=> $input ['avatar_id'],
+                    'type'     =>$input ['type'],
+                    'is_active'=>$input ['is_active'],
+
+        ]);
 
 
-            $user->patients()->create([
+            PatientDetail::create([
 
                 'user_id'           => $user->id,
                 'optician_detail_id'=> Auth::id(),
@@ -134,6 +145,15 @@ class OpticianPatientController extends Controller
 
         $patient = PatientDetail::findOrFail($id);
 
+        //get user_id relevant to patient_id
+        $Patientuser    = PatientDetail::where('id',$id)->pluck('user_id')->all();
+
+        //get userDetails based on the id found and assigned to $Patientuser
+        $user = User::where('id',$Patientuser);
+
+
+
+
         if(trim($request->password) ==''){
 
             $input = $request->except('password');
@@ -158,7 +178,27 @@ class OpticianPatientController extends Controller
 
         }
 
-        $patient->update($input);
+
+        $patient->update([
+            'address'       => $request->address,
+            'contact_number'=> $request->contact_number,
+            'birthday'      => $request->birthday,
+
+        ]);
+
+
+
+
+            $user->update([
+
+                'password' => $input ['password'],
+                'avatar_id' => $input ['avatar_id'],
+
+            ]);
+
+
+
+
 
         return redirect('/patient');
 

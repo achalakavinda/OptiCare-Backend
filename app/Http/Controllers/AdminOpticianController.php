@@ -121,7 +121,7 @@ class AdminOpticianController extends Controller
     {
         $opticians = OpticianDetail::findOrFail($id);
 
-        return view('admin.interfaces.user.optician.show',compact('opticians'));
+        return view('admin.interfaces.user.optician.show',compact('optician s'));
 
 
     }
