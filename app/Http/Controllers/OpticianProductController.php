@@ -22,7 +22,7 @@ class OpticianProductController extends Controller
      */
     public function index()
     {
-        //optician specific products
+
         $products = Product::all();
 
         $images = Product::all();
@@ -58,70 +58,42 @@ class OpticianProductController extends Controller
     public function store(OpticianProductCreate $request)
     {
 
-       $input = $request->all();
 
+        $input = $request->all();
 
         $user = Auth::user();
 
-        $user->products()->create($input);
-
-//       $files = $request->file('product_image_id');
-        $files = $request->file('image');
 
 
-        if($request->hasFile('image')){
+        $files = $request->file('product_image_id');
 
-           foreach ($files as $file){
+        if($request->hasFile('product_image_id')){
 
-               $name = $name = time(). $file->getClientOriginalName();
+            foreach ($files as $file){
 
-               $file->move('images',$name);
+                $name = time(). $file->getClientOriginalName();
 
-               $productimage =  ProductImage::create([
+                $file->move('images',$name);
 
-                   'image'          =>      $name,
-                    'product_id'    =>      $input->id,
+                $productImage = ProductImage::create(['image'=>$name]);
+
+                $input ['product_image_id'] = $productImage->id;
+
+            }
+        }
+
+           $product = Product::create([
+
+                'user_id' => $user->id,
+                'patient_detail_id' => $input ['patient_detail_id'],
+                'vision_id' => $input ['vision_id'],
+                'product_type_id' => $input ['product_type_id'],
+                'product_image_id' => $input ['product_image_id'],
+                'name'             => $input ['name'],
+                'description'       => $input ['description'],
 
 
-               ]);
-
-
-
-
-           }
-       }
-                $user->products()->create($input);
-
-
-//       if($request->hasFile('product_image_id')){
-//
-//           foreach ($files as $file){
-//
-//               $name = time(). $file->getClientOriginalName();
-//
-//               $file->move('images',$name);
-//
-//               $productImage = ProductImage::create(['image'=>$name]);
-//
-//               $input ['product_image_id'] = $productImage->id;
-//           }
-//
-//
-//       }
-
-                $user->products()->create($input);
-
-//        if( $file = $request->file('product_image_id')){
-//
-//            $name = time(). $file->getClientOriginalName();
-//
-//            $file->move('images',$name);
-//
-//            $avatar = ProductImage::create(['image'=>$name]);
-//
-//            $input ['product_image_id'] = $avatar->id;
-//
-//        }
+            ]);
 
 
 

@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('patient_detail_id');
             $table->unsignedInteger('vision_id')->nullable();
             $table->unsignedInteger('product_type_id');
-//            $table->string('product_image_id');
+            $table->string('product_image_id');
 
 
 
