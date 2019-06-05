@@ -25,7 +25,10 @@ class OpticianProductController extends Controller
 
         $products = Product::all();
 
-        $images = Product::all();
+        $images = ProductImage::all();
+
+
+
 
 
         return view('admin.interfaces.product.index',compact('products','images'));
@@ -64,6 +67,18 @@ class OpticianProductController extends Controller
         $user = Auth::user();
 
 
+        $product =Product::create([
+
+            'user_id' => $user->id,
+            'patient_detail_id' => $input ['patient_detail_id'],
+            'vision_id' => $input ['vision_id'],
+            'product_type_id' => $input ['product_type_id'],
+            'name'             => $input ['name'],
+            'description'       => $input ['description'],
+
+
+        ]);
+
 
         $files = $request->file('product_image_id');
 
@@ -75,25 +90,23 @@ class OpticianProductController extends Controller
 
                 $file->move('images',$name);
 
-                $productImage = ProductImage::create(['image'=>$name]);
+                    ProductImage::create([
 
-                $input ['product_image_id'] = $productImage->id;
+                    'image'=>$name,
+                    'product_id' => $product->id,
+
+                    ]);
+
+
+
 
             }
         }
 
-           $product = Product::create([
-
-                'user_id' => $user->id,
-                'patient_detail_id' => $input ['patient_detail_id'],
-                'vision_id' => $input ['vision_id'],
-                'product_type_id' => $input ['product_type_id'],
-                'product_image_id' => $input ['product_image_id'],
-                'name'             => $input ['name'],
-                'description'       => $input ['description'],
 
 
-            ]);
+
+
 
 
 

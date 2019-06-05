@@ -41,18 +41,17 @@ class ProductTypeController extends Controller
      */
     public function store(ProductTypeCreate $request)
     {
-//        $input = $request->all();
-        $optician = Auth::user();
+
 
 
 //        $optician = ProductType::create($input);
 
 
 
-        $optician->ProductType()->create([
+        ProductType::create([
 
 
-            'user_id' => $optician->id,
+            'user_id' => Auth::id(),
             'name'    => $request->name,
             'created_at' => $request->created_at,
             'updated_at' => $request->updated_at,

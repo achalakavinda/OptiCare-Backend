@@ -14,7 +14,7 @@
 
             <div class="form-group">
                     {!! Form::label('vision_id','Vision :') !!}
-                    {!! Form::select ('vision_id',[1=>'Choose Type'] + $productVision,null,['class'=>'form-control'])!!}
+                    {!! Form::select ('vision_id',[''=>'Choose Type'] + $productVision,null,['class'=>'form-control'])!!}
             </div>
 
             <div class="form-group">
@@ -28,8 +28,8 @@
             </div>
 
             <div class="form-group">
-                    {!! Form::label('image[]','Image:') !!}
-                    {!! Form::file ('image[]',array('multiple'=>true,'accept'=>'image/*'),['class'=>'form-control'])!!}
+                    {!! Form::label('product_image_id[]','Image:') !!}
+                    {!! Form::file ('product_image_id[]',array('multiple'=>true,'accept'=>'image/*'),['class'=>'form-control'])!!}
             </div>
     </div>
 </div>
