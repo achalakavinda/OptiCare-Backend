@@ -36,7 +36,8 @@ class CheckUpController extends Controller
 
         $optician = OpticianDetail::pluck('shop_name','id')->all();
         $patient = User::where('type','patient')->pluck('name','id')->all();
-//
+
+
         return view('admin.interfaces.checkup.create',compact('optician','patient'));
     }
 
@@ -51,7 +52,29 @@ class CheckUpController extends Controller
 
         $input = $request->all();
 
-        CheckUp::create($input);
+        //get the optician name
+        $optician = OpticianDetail::findOrFail($input ['optician_id']);
+        $name = $optician->user->name;
+
+        //get patient Name
+        $userName = User::findOrFail($input ['patient_id']);
+        $patietName = $userName->name;
+
+
+
+        CheckUp::create([
+
+            'optician_id' => $input ['optician_id'],
+            'optician_name'=> $name,
+            'patient_id' => $input ['patient_id'],
+            'patient_name'=>$patietName,
+            'date' => $input ['date'],
+            'type' => $input ['type'],
+            'isMobile' => $input ['isMobile'],
+            'status'   => $input ['status']
+
+
+        ]);
 
         return redirect('check-up');
 
@@ -119,8 +142,18 @@ class CheckUpController extends Controller
     {
         $checkup = CheckUp::findOrFail($id);
 
-        $checkup->update($request->all());
 
+
+        $checkup->update([
+           'date'       => $request->date,
+            'type'      => $request->type,
+            'isMobile'  => $request->isMobile,
+            'status'    => $request->status,
+            'note'      => $request->note,
+
+
+
+        ]);
         return redirect('check-up');
     }
 

@@ -83,7 +83,7 @@ class OpticianPatientController extends Controller
             $user->patients()->create([
 
                 'user_id'           => $user->id,
-                'optician_detail_id'=> 1,
+                'optician_detail_id'=> Auth::id(),
                 'address'           => $request->address,
                 'contact_number'    => $request->contact_number ,
                 'birthday'          => $request->birthday,

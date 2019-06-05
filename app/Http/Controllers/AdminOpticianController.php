@@ -76,13 +76,24 @@ class AdminOpticianController extends Controller
             }
 
 //            return $input;
-           $user = User::create($input);
-           
+//           $user = User::create($input);
+            $user = User::create([
+
+                'name' => $input['name'],
+                'email'=> $input['email'],
+                'password' => $input ['password'],
+                'avatar_id' => $input ['avatar_id'],
+                'type'      => $input ['type'],
+                'is_active' => $input ['is_active'],
+
+
+            ]);
 
             /*
              *  get the necessary values for the relevant form id and create the user type optician
              */
-            $user->optician()->create([
+
+            OpticianDetail::create([
                 'user_id'                       => $user->id,
                 'shop_name'                     => $request->shop_name,
                 'br_number'                     => $request->br_number,
@@ -91,7 +102,9 @@ class AdminOpticianController extends Controller
                 'contact_number_alternative'    => $request->contact_number_alternative,
                 'latitude'                      => 1,
                 'longitude'                     => 2,
+
             ]);
+
 
 
             return redirect('/optician');
@@ -106,7 +119,11 @@ class AdminOpticianController extends Controller
      */
     public function show($id)
     {
-        //
+        $opticians = OpticianDetail::findOrFail($id);
+
+        return view('admin.interfaces.user.optician.show',compact('opticians'));
+
+
     }
 
     /**

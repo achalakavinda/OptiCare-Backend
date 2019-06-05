@@ -47,9 +47,9 @@ class User extends Authenticatable
 
     }
 
-    public function  patients(){
+    public function  patient(){
 
-        return $this->hasMany('App\Models\PatientDetail');
+        return $this->belongsTo('App\Models\PatientDetail');
     }
 
     public function productType() {
