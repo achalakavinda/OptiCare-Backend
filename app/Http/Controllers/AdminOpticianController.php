@@ -75,8 +75,7 @@ class AdminOpticianController extends Controller
 
             }
 
-//            return $input;
-//           $user = User::create($input);
+
             $user = User::create([
 
                 'name' => $input['name'],
@@ -121,7 +120,7 @@ class AdminOpticianController extends Controller
     {
         $opticians = OpticianDetail::findOrFail($id);
 
-        return view('admin.interfaces.user.optician.show',compact('optician s'));
+        return view('admin.interfaces.user.optician.show',compact('opticians'));
 
 
     }

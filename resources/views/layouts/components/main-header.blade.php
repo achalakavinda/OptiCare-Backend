@@ -25,14 +25,14 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="{!! Auth::user()->img_url !!}" class="user-image" alt="User Image">
+                        <img src="{!! Auth::user()->avatar ? Auth::user()->avatar->file :'/images/noImage.png' !!}" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">{{ ucfirst(Auth::user()->name)  }}</span>
+                        <span class="hidden-xs">{{ ucfirst(Auth::user()->name) }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{!! Auth::user()->img_url !!}" class="img-circle" alt="User Image">
+                            <img src="{!! Auth::user()->avatar ? Auth::user()->avatar->file :'/images/noImage.png' !!}" class="img-circle" alt="User Image">
 
                             <p>
                                 {{ ucfirst(Auth::user()->name)  }}
@@ -40,9 +40,9 @@
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="{!! url('staff/profile') !!}/{!! Auth::id() !!}" class="btn btn-default btn-flat">Profile</a>
-                            </div>
+                            {{--<div class="pull-left">--}}
+                                {{--<a href="{!! url('staff/profile') !!}/{!! Auth::id() !!}" class="btn btn-default btn-flat">Profile</a>--}}
+                            {{--</div>--}}
                             <div class="pull-right">
                                 <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

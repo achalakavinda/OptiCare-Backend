@@ -10,6 +10,7 @@ use App\Models\ProductImage;
 use App\Models\ProductSale;
 use App\Models\ProductType;
 use App\Models\Vision;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,12 +28,7 @@ class OpticianProductController extends Controller
 
         $images = ProductImage::all();
 
-
-
-
-
         return view('admin.interfaces.product.index',compact('products','images'));
-
 
     }
 
@@ -43,13 +39,12 @@ class OpticianProductController extends Controller
      */
     public function create()
     {
-//            $productType = ProductType::all();
-            $productVision = Vision::pluck('id')->all();
-            $productPatient = PatientDetail::pluck('contact_number','id')->all();
-//        $productType->productType()->pluck('name','id')->all();
+
+            $productVision = User::where('type','patient' )->pluck('name','id')->all();
+
             $productType = ProductType::pluck('name','id')->all();
 
-        return view('admin.interfaces.product.create',compact('productType','productVision','productPatient'));
+        return view('admin.interfaces.product.create',compact('productType','productVision'));
     }
 
     /**
@@ -64,16 +59,26 @@ class OpticianProductController extends Controller
 
         $input = $request->all();
 
+        //get patient id
+        $patientID = PatientDetail::where('user_id',$input['vision_id'])->pluck('id')->first();
+        // vision id relevant to patient
+        $vision = Vision::where('patient_id',$patientID)->pluck('id')->first();
+        //assign vision id
+
+        $input ['patient_detail_id'] = $patientID;
+
+        $input ['vision_id'] = $vision;
+
         $user = Auth::user();
 
 
         $product =Product::create([
 
-            'user_id' => $user->id,
+            'user_id'           => $user->id,
             'patient_detail_id' => $input ['patient_detail_id'],
-            'vision_id' => $input ['vision_id'],
-            'product_type_id' => $input ['product_type_id'],
-            'name'             => $input ['name'],
+            'vision_id'         => $input ['vision_id'],
+            'product_type_id'   => $input ['product_type_id'],
+            'name'              => $input ['name'],
             'description'       => $input ['description'],
 
 
@@ -224,9 +229,15 @@ class OpticianProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        unlink(public_path().'/images/'. $product->productImage->image);
+        $productImages = ProductImage::where('product_id',$id)->pluck('image')->all();
 
-        $product->delete();
+        foreach ($productImages as $productImage){
+
+            unlink(public_path().$productImage);
+        }
+
+            $product->delete();
+
 
         return redirect('/product');
     }

@@ -9,17 +9,17 @@
 
             <div class="form-group">
                     {!! Form::label('product_type_id','Product Type') !!}
-                    {!! Form::select ('product_type_id',[''=>'Choose Type']+ $productType ,null,['class'=>'form-control'])!!}
+                    {!! Form::select ('product_type_id',[''=>'Choose Type']+ $productType,null,['class'=>'form-control'])!!}
             </div>
 
             <div class="form-group">
-                    {!! Form::label('vision_id','Vision :') !!}
-                    {!! Form::select ('vision_id',[''=>'Choose Type'] + $productVision,null,['class'=>'form-control'])!!}
+                    {!! Form::label('vision_id','Vision of :') !!}
+                    {!! Form::select ('vision_id',[''=>'Choose Type'] +$productVision,null,['class'=>'form-control'])!!}
             </div>
 
             <div class="form-group">
-                {!! Form::label('patient_detail_id','Patient Name :') !!}
-                {!! Form::select ('patient_detail_id',[''=>'Choose Type'] + $productPatient,null,['class'=>'form-control'])!!}
+                {!! Form::hidden('patient_detail_id','Patient Name :') !!}
+                {!! Form::hidden ('patient_detail_id',null,['class'=>'form-control'])!!}
             </div>
 
             <div class="form-group">
