@@ -6,7 +6,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Dashboard</h3>
+            <h3 class="box-title">Edit Admin</h3>
         </div>
     @include('admin.widgets.header-widgets')
     <!-- /.box-body -->
@@ -41,11 +41,14 @@
                                     @include('admin.interfaces.user._partials.edit')
                                 {!! Form::close() !!}
 
-                                {!! Form::open (['method' =>'DELETE','action'=>['UserController@destroy',$user->id]]) !!}
-                                    <div class="form-group">
-                                        {!! Form::submit ('Delete User',['class'=>'btn btn-danger col-sm-5'])!!}
-                                    </div>
-                                {!! Form::close() !!}
+                                <div class="box-body">
+
+                                        {!! Form::open (['method' =>'DELETE','action'=>['UserController@destroy',$user->id]]) !!}
+                                            <div class="form-group">
+                                                {!! Form::submit ('Delete User',['class'=>'btn btn-danger col-sm-5'])!!}
+                                            </div>
+                                        {!! Form::close() !!}
+                                </div>
                             </div>
                     </div>      <!-- /.box -->
             <div>

@@ -44,56 +44,40 @@ class AdminOpticianController extends Controller
      */
     public function store(AdminOpticianCreate $request)
     {
-
             // get all the passed values to the variable , so it can be modified
-
             $input  = $request->all();
-
             if(trim($request->password) ==''){
-
                 $input = $request->except('password');
-
             }else{
-
                 $input = $request->all();
                 //password encrypting
                 $input ['password'] = bcrypt($request->password);
-
             }
-                /*
-                 * get the user avatar and append the file with time and logged in users name.
-                 * move the file to the named folder
-                 *
-                 */
-            if( $file = $request->file('avatar_id')){
 
+           /*
+            * get the user avatar and append the file with time and logged in users name.
+            * move the file to the named folder
+            */
+            if( $file = $request->file('avatar_id'))
+            {
                 $name = time(). $file->getClientOriginalName();
-
                 $file->move('images',$name);
-
                 $avatar = Avatar::create(['file'=>$name]);
-
                 $input ['avatar_id'] = $avatar->id;
-
             }
-
 
             $user = User::create([
-
                 'name' => $input['name'],
                 'email'=> $input['email'],
                 'password' => $input ['password'],
                 'avatar_id' => $input ['avatar_id'] ? $input ['avatar_id'] : null ,
-                'type'      => $input ['type'],
+                'type'      => 'optician',
                 'is_active' => $input ['is_active'],
-
-
             ]);
 
             /*
              *  get the necessary values for the relevant form id and create the user type optician
              */
-
             OpticianDetail::create([
                 'user_id'                       => $user->id,
                 'shop_name'                     => $request->shop_name,
@@ -103,13 +87,9 @@ class AdminOpticianController extends Controller
                 'contact_number_alternative'    => $request->contact_number_alternative,
                 'latitude'                      => 1,
                 'longitude'                     => 2,
-
             ]);
 
-
-
             return redirect('/optician');
-
     }
 
     /**

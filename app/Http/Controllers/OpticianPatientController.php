@@ -27,8 +27,6 @@ class OpticianPatientController extends Controller
             $patients = User::where(['type'=>'patient','optician_id'=>Auth::id()])->get();
         }
 
-
-
         return view('admin.interfaces.user.patient.index',compact('patients'));
 
     }

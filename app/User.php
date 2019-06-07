@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function  patients(){
 
-        return $this->hasMany('App\Models\PatientDetail');
+        return $this->hasOne('App\Models\PatientDetail');
     }
 
     public function productType() {

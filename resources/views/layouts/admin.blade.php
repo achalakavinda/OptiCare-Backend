@@ -19,6 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     {!! Html::style('admin/css/AdminLTE.min.css') !!}
     {!! Html::style('admin/css/skins/skin-blue.min.css') !!}
+    {!! Html::style('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') !!}
 
     <style>
         .form-group{
