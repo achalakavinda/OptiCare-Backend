@@ -9,12 +9,59 @@
 
     <!-- Default box -->
     <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Dashboard</h3>
+        <div style="padding: 10px" class="row">
+
+            <div class="box-header with-border">
+                <h3 class="box-title">Dashboard</h3>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <a href="#">
+                    <div class="info-box bg-aqua">
+                        <span class="info-box-icon"><i class="fa fa-users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Users</span>
+                            <span class="info-box-number"></span>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-description">
+                                        # of Users : <?php echo \App\User::get()->count() ?>
+                                    </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </a>
+            </div><!--/.col -->
+
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <a href="#">
+                    <div class="info-box bg-aqua">
+                        <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">CheckUps</span>
+                            <span class="info-box-number"></span>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-description">
+                                        # of Checkups : <?php echo \App\Models\CheckUp::get()->count() ?>
+                                    </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </a>
+            </div><!--/.col -->
+
+
         </div>
-    @include('admin.widgets.header-widgets')
-    <!-- /.box-body -->
     </div>
+
     <!-- /.box -->
 @endsection
 <!-- /main header section -->
@@ -33,7 +80,6 @@
                         <thead>
                         <tr>
                             <th>#ID</th>
-
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>

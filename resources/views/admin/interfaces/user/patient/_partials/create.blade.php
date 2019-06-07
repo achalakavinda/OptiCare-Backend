@@ -13,8 +13,12 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('type','*User Type',['class' => 'control-label']) !!}
-                {!! Form::select('type',['patient'],null,['class'=>'form-control','id'=>'role']) !!}
+                {!! Form::label('optician_id','Optician',['class' => 'control-label']) !!}
+                    @if( \Illuminate\Support\Facades\Auth::user()->type === 'admin')
+                            {!! Form::select('optician_id',\App\User::where('type','optician')->pluck('name','id'),null,['class'=>'form-control','id'=>'role']) !!}
+                    @else
+                            {!! Form::select('optician_id',[\Illuminate\Support\Facades\Auth::id() => Auth::user()->name],null,['class'=>'form-control','id'=>'role']) !!}
+                    @endif
             </div>
 
             <div class="form-group">

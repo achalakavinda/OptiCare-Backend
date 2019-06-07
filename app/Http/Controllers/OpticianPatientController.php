@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Avatar;
 use App\Http\Requests\OpticianPatientCreate;
 use App\Http\Requests\OpticianPatientEdit;
-use App\Models\OpticianDetail;
 use App\Models\PatientDetail;
 use App\User;
 use function GuzzleHttp\Promise\all;
@@ -22,7 +21,13 @@ class OpticianPatientController extends Controller
     public function index()
     {
 
-        $patients = PatientDetail::all();
+        if(Auth::user()->type === "admin"){
+            $patients = User::where('type','patient')->get();
+        }else{
+            $patients = User::where(['type'=>'patient','optician_id'=>Auth::id()])->get();
+        }
+
+
 
         return view('admin.interfaces.user.patient.index',compact('patients'));
 
@@ -48,63 +53,37 @@ class OpticianPatientController extends Controller
      */
     public function store(OpticianPatientCreate $request)
     {
-
-
-
-        $input = $request->all();
-        $currentUser = Auth::id();
-
-        $opticianId = OpticianDetail::where('user_id',$currentUser)->pluck('id')->first();
-
         if(trim($request->password) ==''){
-
-            $input = $request->except('password');
-
-        }else{
-
-            $input = $request->all();
-            $input ['password'] = bcrypt($request->password);
-
+            $request->except('password');
         }
 
-        if($file = $request->file('avatar_id')){
-
-            $name = time(). $file->getClientOriginalName();
-
-            $file->move('images',$name);
-
-            $avatar = Avatar::create(['file' => $name]);
-
-            $input['avatar_id'] = $avatar->id;
-
-
-        }
-
-
-                $user = User::create([
-
-                    'name' => $input ['name'],
-                    'email'=> $input ['email'],
-                    'password' => $input ['password'],
-                    'avatar_id'=> $input ['avatar_id'],
-                    'type'     =>$input ['type'],
-                    'is_active'=>$input ['is_active'],
-
+        $user = User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=> bcrypt($request->password),
+            'optician_id'=> $request->optician_id,
+            'type'=>'patient',
+            'is_active'=>$request->is_active
         ]);
 
-
-            PatientDetail::create([
-
+        PatientDetail::create([
                 'user_id'           => $user->id,
-                'optician_detail_id'=> $opticianId,
+                'optician_detail_id'=> $request->optician_id,
                 'address'           => $request->address,
                 'contact_number'    => $request->contact_number ,
                 'birthday'          => $request->birthday,
-
             ]);
 
-            return redirect('/patient');
+         if($file = $request->file('avatar_id'))
+         {
+             $name = time(). $file->getClientOriginalName();
+             $file->move('images',$name);
+             $avatar = Avatar::create(['file' => $name]);
+             $user->avatar_id = $avatar->id;
+             $user->save();
+         }
 
+            return redirect('/patient');
     }
 
     /**
@@ -147,15 +126,6 @@ class OpticianPatientController extends Controller
 
         $patient = PatientDetail::findOrFail($id);
 
-        //get user_id relevant to patient_id
-        $Patientuser    = PatientDetail::where('id',$id)->pluck('user_id')->all();
-
-        //get userDetails based on the id found and assigned to $Patientuser
-        $user = User::where('id',$Patientuser);
-
-
-
-
         if(trim($request->password) ==''){
 
             $input = $request->except('password');
@@ -180,27 +150,7 @@ class OpticianPatientController extends Controller
 
         }
 
-
-        $patient->update([
-            'address'       => $request->address,
-            'contact_number'=> $request->contact_number,
-            'birthday'      => $request->birthday,
-
-        ]);
-
-
-
-
-            $user->update([
-
-                'password' => $input ['password'],
-                'avatar_id' => $input ['avatar_id'],
-
-            ]);
-
-
-
-
+        $patient->update($input);
 
         return redirect('/patient');
 

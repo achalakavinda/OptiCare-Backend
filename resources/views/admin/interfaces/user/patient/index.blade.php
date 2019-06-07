@@ -33,34 +33,29 @@
                             <th>Name</th>
                             <th>Contact Number</th>
                             <th>Vision Report</th>
-                            <th>Checkups<i class="fa fa-paper-plane"></i></th>
-                            <th>Test Summery reports<i class="fa fa-paper-plane"></i></th>
-                            <th>View <i class="fa fa-paper-plane"></i></th>
+                            <th>Checkups</th>
+                            <th>Test Summery reports</th>
+                            <th>View</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($patients as $patient)
                                 <tr>
                                     <td>{!! $patient->id !!}</td>
-                                    <td><img height="30"  src="{{$patient->user->avatar ? $patient->user->avatar->file : '/images/noImage.png'}}"> </td>
-                                    <td>{!! $patient->user->name !!}</td>
-                                    <td>{!! $patient->contact_number !!}</td>
+                                    <td><img height="30"  src="{{$patient->avatar ? $patient->avatar->file : '/images/noImage.png'}}"> </td>
+                                    <td>{!! $patient->name !!}</td>
+                                    <td>{!! $patient->patients->contact_number !!}</td>
                                     <td>
-                                        <a href="{{route('vision.show',$patient->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                        <a href="{{route('vision.show',$patient->patients->id)}}"><i class="fa fa-file"></i></a>
                                     </td>
                                     <td>
-                                    <a href="{{route('check-up.show',$patient->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                    <a href="{{route('check-up.show',$patient->id)}}"><i class="fa fa-file"></i></a>
                                     </td>
-                                    {{--<td>--}}
-                                        {{--<a href="user/{{$patient->id}}/check-up"><i class="fa fa-paper-plane"></i></a>--}}
-                                    {{--</td>--}}
-
                                     <td>
-                                        <a href="user/{{$patient->id}}/test-summery"><i class="fa fa-paper-plane"></i></a>
+                                        <a href="user/{{$patient->id}}/test-summery"><i class="fa fa-file"></i></a>
                                     </td>
-
                                     <td>
-                                        <a href="{{route('patient.edit',$patient->id)}}"><i class="fa fa-paper-plane"></i></a>
+                                        <a href="{{route('patient.edit',$patient->patients->id)}}">View <i class="fa fa-paper-plane"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
