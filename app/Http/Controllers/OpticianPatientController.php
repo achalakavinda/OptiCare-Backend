@@ -52,7 +52,9 @@ class OpticianPatientController extends Controller
 
 
         $input = $request->all();
-        $currentUser = Auth::user();
+        $currentUser = Auth::id();
+
+        $opticianId = OpticianDetail::where('user_id',$currentUser)->pluck('id')->first();
 
         if(trim($request->password) ==''){
 
@@ -94,7 +96,7 @@ class OpticianPatientController extends Controller
             PatientDetail::create([
 
                 'user_id'           => $user->id,
-                'optician_detail_id'=> Auth::id(),
+                'optician_detail_id'=> $opticianId,
                 'address'           => $request->address,
                 'contact_number'    => $request->contact_number ,
                 'birthday'          => $request->birthday,

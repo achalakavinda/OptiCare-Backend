@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Avatar;
 use App\Http\Requests\AdminOpticianCreate;
 use App\Http\Requests\AdminOpticianEdit;
+use App\Models\CheckUp;
 use App\Models\OpticianDetail;
+use App\Models\PatientDetail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,7 +83,7 @@ class AdminOpticianController extends Controller
                 'name' => $input['name'],
                 'email'=> $input['email'],
                 'password' => $input ['password'],
-                'avatar_id' => $input ['avatar_id'],
+                'avatar_id' => $input ['avatar_id'] ? $input ['avatar_id'] : null ,
                 'type'      => $input ['type'],
                 'is_active' => $input ['is_active'],
 
@@ -120,7 +122,19 @@ class AdminOpticianController extends Controller
     {
         $opticians = OpticianDetail::findOrFail($id);
 
-        return view('admin.interfaces.user.optician.show',compact('opticians'));
+        $patients = PatientDetail::where('optician_detail_id',$id)->pluck('id')->count();
+
+        $patientsDetails = PatientDetail::where('optician_detail_id',$id)->get();
+
+        $checkUps = CheckUp::where('optician_id',$id)->pluck('id')->count();
+
+        $checkUpsDetails = CheckUp::where('optician_id',$id)->get();
+
+
+
+        return view('admin.interfaces.user.optician.show',compact('opticians','patients','checkUps','patientsDetails','checkUpsDetails'));
+
+
 
 
     }

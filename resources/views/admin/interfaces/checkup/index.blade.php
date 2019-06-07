@@ -27,47 +27,47 @@
                 </div>
                 <!-- /.box-header -->
                 <div style="overflow: auto" class="box-body">
-                    <table id="table" class="table table-responsive table-bordered table-striped">
-                        <thead>
+            <table id="table" class="table table-responsive table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Optician ID</th>
+                    <th>Patient ID</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>View <i class="fa fa-paper-plane"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                @if($CheckUps)
+
+                    @foreach($CheckUps as $CheckUp)
                         <tr>
-                            <th>#ID</th>
-                            <th>Optician ID</th>
-                            <th>Patient ID</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                            <th>View <i class="fa fa-paper-plane"></i></th>
+                            <td>{!! $CheckUp->id !!}</td>
+                            {{--<td>--}}
+                            {{--@foreach($images as $image)--}}
+                            {{--<img height="30"  src="{{'/images/'.$image->image ? '/images/'.$image->image : '/images/No_image_available.svg'}}">--}}
+
+                            {{--@endforeach--}}
+                            {{--</td>--}}
+                            <td>{!! $CheckUp->optician_id !!}</td>
+                            <td>{!! $CheckUp->patient_id!!}</td>
+                            <td>{!! $CheckUp->type!!}</td>
+                            <td>{!! $CheckUp->status!!}</td>
+                            <td>
+                                <a href="{{route('check-up.edit',$CheckUp->id)}}"><i class="fa fa-paper-plane"></i></a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @if($CheckUps)
-
-                            @foreach($CheckUps as $CheckUp)
-                                <tr>
-                                    <td>{!! $CheckUp->id !!}</td>
-                                    {{--<td>--}}
-                                        {{--@foreach($images as $image)--}}
-                                            {{--<img height="30"  src="{{'/images/'.$image->image ? '/images/'.$image->image : '/images/No_image_available.svg'}}">--}}
-
-                                        {{--@endforeach--}}
-                                    {{--</td>--}}
-                                    <td>{!! $CheckUp->optician_id !!}</td>
-                                    <td>{!! $CheckUp->patient_id!!}</td>
-                                    <td>{!! $CheckUp->type!!}</td>
-                                    <td>{!! $CheckUp->status!!}</td>
-                                    <td>
-                                        <a href="{{route('check-up.edit',$CheckUp->id)}}"><i class="fa fa-paper-plane"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
+                    @endforeach
+                @endif
+                </tbody>
+            </table>
         </div>
-        <!-- /.col -->
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    </div>
+    <!-- /.col -->
     </div>
 
 
