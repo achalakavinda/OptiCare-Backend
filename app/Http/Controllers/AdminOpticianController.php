@@ -64,6 +64,8 @@ class AdminOpticianController extends Controller
                 $file->move('images',$name);
                 $avatar = Avatar::create(['file'=>$name]);
                 $input ['avatar_id'] = $avatar->id;
+            }else{
+                $input ['avatar_id'] = null;
             }
 
             $user = User::create([
@@ -85,8 +87,8 @@ class AdminOpticianController extends Controller
                 'address'                       => $request->address,
                 'contact_number'                => $request->contact_number,
                 'contact_number_alternative'    => $request->contact_number_alternative,
-                'latitude'                      => 1,
-                'longitude'                     => 2,
+                'latitude'                      => $request->latitude,
+                'longitude'                     => $request->longitude,
             ]);
 
             return redirect('/optician');

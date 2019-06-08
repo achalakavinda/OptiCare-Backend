@@ -46,10 +46,10 @@
                                     <td>{!! $patient->name !!}</td>
                                     <td>{!! $patient->patients->contact_number !!}</td>
                                     <td>
-                                        <a href="{!! url('user') !!}/{!! $patient->patients->id !!}/vision"><i class="fa fa-file"></i></a>
+                                        <a href="{!! url('user') !!}/{!! $patient->id !!}/vision"><i class="fa fa-file"></i></a>
                                     </td>
                                     <td>
-                                    <a href="{!! url('user') !!}/{!! $patient->patients->id !!}/checkup"><i class="fa fa-file"></i></a>
+                                    <a href="{!! url('user') !!}/{!! $patient->id !!}/checkup"><i class="fa fa-file"></i></a>
                                     </td>
                                     <td>
                                         <a href="user/{{$patient->id}}/test-summery"><i class="fa fa-file"></i></a>

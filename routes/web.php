@@ -20,7 +20,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::Resource('/user','UserController');
 
-    Route::get('/user/{id}/test-summery','TestSummeryController@UserTestSummery');
+    Route::get('/user/{id}/test-summery','OpticianPatientController@UserTestSummery');
+    Route::get('/user/{id}/checkup','OpticianPatientController@UserCheckups');
+    Route::get('/user/{id}/vision','OpticianPatientController@UserVisions');
+
+
+
+
 
     Route::get('/check-up/user/{id}/check-up','CheckUpController@UserCheckUp'); // done
 

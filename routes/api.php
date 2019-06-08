@@ -23,7 +23,16 @@ Route::post('/login',function (Request $request){
             if($User!=null)
             {
                 if( Hash::check($request->password, $User->password) ){
-                    $arr = ['status'=>true,'message'=>'your login now... Please wait loading your account','user'=>$User];
+                    if($User->type === 'patient'){
+
+                        $arr = ['status'=>true,'message'=>'your login now... Please wait loading your account','user'=>$User];
+
+                    }else{
+
+                        $arr = ['status'=>false,'message'=>'Only patient can login into mobile app, Please Contact youre system administrator!'];
+
+                    }
+
                 }else{
                     $arr = ['status'=>false,'message'=>'invalid username or password mismatch!'];
                 }
@@ -50,28 +59,15 @@ Route::post('/test/myopia',function (Request $request){
         {
             $DataArray = json_decode($request->Data,true);
 
-            $CheckUp = \App\Models\CheckUp::create([
-                'optician_id'=>1,
-                'patient_id'=>1,
-                'date'=>\Carbon\Carbon::now(),
-                'type'=>'Myopia',
-                'isMobile'=>true,
-                'status'=>'Appointment',
-                'note'=>'Created By Opti-care Mobile App'
-            ]);
-//
-//                \App\Models\Appointment::create([
-//                    'optician_id'=>$CheckUp->optician_id,
-//                    'patient_id'=>$CheckUp->patient_id,
-//                    'check_up_id'=>$CheckUp->id,
-//                ]);
-
             $TestSummry = \App\Models\TestSummery::create([
                 'optician_id'=>1,
                 'patient_id'=>1,
                 'type'=>'myopia'
             ]);
-
+            
+            $patient_id = 1;
+            $optician_id = 1;
+            
             foreach ($DataArray as $item){
                 try {
                     $patient_id = $item['patient_id'];
@@ -96,6 +92,26 @@ Route::post('/test/myopia',function (Request $request){
                 }
             }
 
+            $TestSummry->patient_id = $patient_id;
+            $TestSummry->optician_id = $optician_id;
+            $TestSummry->save();
+
+            $CheckUp = \App\Models\CheckUp::create([
+                'optician_id'=>$optician_id,
+                'patient_id'=>$patient_id,
+                'date'=>\Carbon\Carbon::now(),
+                'type'=>'Myopia',
+                'isMobile'=>true,
+                'status'=>'Appointment',
+                'note'=>'Created By Opti-care Mobile App'
+            ]);
+//
+//                \App\Models\Appointment::create([
+//                    'optician_id'=>$CheckUp->optician_id,
+//                    'patient_id'=>$CheckUp->patient_id,
+//                    'check_up_id'=>$CheckUp->id,
+//                ]);
+
             return ['status'=>true,'message'=>'Pass Test data','body'=>$DataArray];
 
         }else
@@ -115,27 +131,14 @@ Route::post('/test/hyperpia',function (Request $request){
         {
             $DataArray = json_decode($request->Data,true);
 
-            $CheckUp = \App\Models\CheckUp::create([
-                'optician_id'=>1,
-                'patient_id'=>1,
-                'date'=>\Carbon\Carbon::now(),
-                'type'=>'Hyperopia',
-                'isMobile'=>true,
-                'status'=>'Appointment',
-                'note'=>'Created By Opti-care Mobile App'
-            ]);
-//
-//                \App\Models\Appointment::create([
-//                    'optician_id'=>$CheckUp->optician_id,
-//                    'patient_id'=>$CheckUp->patient_id,
-//                    'check_up_id'=>$CheckUp->id,
-//                ]);
-
             $TestSummry = \App\Models\TestSummery::create([
                 'optician_id'=>1,
                 'patient_id'=>1,
                 'type'=>'hyperpia'
             ]);
+
+            $patient_id = 1;
+            $optician_id = 1;
 
             foreach ($DataArray as $item){
                 try {
@@ -161,6 +164,29 @@ Route::post('/test/hyperpia',function (Request $request){
                 }
             }
 
+            $TestSummry->patient_id = $patient_id;
+            $TestSummry->optician_id = $optician_id;
+            $TestSummry->save();
+
+
+            $CheckUp = \App\Models\CheckUp::create([
+                'optician_id'=>$optician_id,
+                'patient_id'=>$patient_id,
+                'date'=>\Carbon\Carbon::now(),
+                'type'=>'Hyperopia',
+                'isMobile'=>true,
+                'status'=>'Appointment',
+                'note'=>'Created By Opti-care Mobile App'
+            ]);
+
+
+            //
+//                \App\Models\Appointment::create([
+//                    'optician_id'=>$CheckUp->optician_id,
+//                    'patient_id'=>$CheckUp->patient_id,
+//                    'check_up_id'=>$CheckUp->id,
+//                ]);
+
             return ['status'=>true,'message'=>'Pass Test data','body'=>$DataArray];
 
         }else
@@ -176,13 +202,8 @@ Route::post('/test/hyperpia',function (Request $request){
 Route::get('/user/{id}/optician/locations',function ($id){
     $arr = [
         'user'=>[ 'id'=>1, 'name'=>'test user'],
-        'opticians'=>[
-            ['id'=>1,'name'=>'Cabraal Opticions', 'lat' =>6.902255, 'lng' =>79.916294],
-            ['id'=>2,'name'=>'Wickramarachchi Opticians', 'lat' =>6.902255, 'lng' =>79.916294],
-            ['id'=>3,'name'=>'Ekanayake Opticians', 'lat' =>6.902255, 'lng' =>79.916294],
-        ]
+        'opticians'=>\App\Models\OpticianDetail::all()
     ];
-
     return $arr;
 });
 

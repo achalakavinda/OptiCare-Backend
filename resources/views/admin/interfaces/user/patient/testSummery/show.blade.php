@@ -44,26 +44,43 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if($TestSummaries)
+                        @if($items)
 
-                            @foreach($TestSummaries as $TestSummery)
+                            @foreach($items as $item)
                                 <tr>
-                                    <td>{!! $TestSummery->id !!}</td>
+                                    <td>{!! $item->id !!}</td>
                                     {{--<td>--}}
                                     {{--@foreach($images as $image)--}}
                                     {{--<img height="30"  src="{{'/images/'.$image->image ? '/images/'.$image->image : '/images/No_image_available.svg'}}">--}}
 
                                     {{--@endforeach--}}
                                     {{--</td>--}}
-                                    <td>{!! $TestSummery->optician_id !!}</td>
-                                    <td>{!! $TestSummery->patient_id!!}</td>
-                                    <td>{!! $TestSummery->date!!}</td>
-                                    <td>{!! $TestSummery->type!!}</td>
-                                    <td>{!! $TestSummery->isPass == 1 ? 'Pass' : 'Failed'!!}</td>
-                                    <td>{!! $TestSummery->isCheckupCreated == 1 ? 'Created' : 'Not created'!!}</td>
-                                    <td>{!! $TestSummery->isAppointmentCreated == 1 ? 'Created' : 'Not created'!!}</td>
-                                    <td>{!! $TestSummery->score!!}</td>
-                                    <td>{!! $TestSummery->created_at!!}</td>
+                                    <?php
+                                        $optician_name = null;
+                                        $patient_name = null;
+
+                                        $optician_name = \App\User::find($item->optician_id) ;
+                                        $patient_name = \App\User::find($item->patient_id) ;
+
+                                        if($optician_name){
+                                            $optician_name = $optician_name->name;
+                                        }
+
+                                        if($patient_name){
+                                            $patient_name = $patient_name->name;
+                                        }
+
+                                    ?>
+
+                                    <td>{!! $optician_name !!}</td>
+                                    <td>{!! $patient_name  !!}</td>
+                                    <td>{!! $item->date!!}</td>
+                                    <td>{!! $item->type!!}</td>
+                                    <td>{!! $item->isPass == 1 ? 'Pass' : 'Failed'!!}</td>
+                                    <td>{!! $item->isCheckupCreated == 1 ? 'Created' : 'Not created'!!}</td>
+                                    <td>{!! $item->isAppointmentCreated == 1 ? 'Created' : 'Not created'!!}</td>
+                                    <td>{!! $item->score!!}</td>
+                                    <td>{!! $item->created_at!!}</td>
                                 </tr>
                             @endforeach
                         @endif

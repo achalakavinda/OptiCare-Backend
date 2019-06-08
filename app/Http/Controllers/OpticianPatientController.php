@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Avatar;
 use App\Http\Requests\OpticianPatientCreate;
 use App\Http\Requests\OpticianPatientEdit;
+use App\Models\CheckUp;
 use App\Models\PatientDetail;
+use App\Models\TestSummery;
+use App\Models\Vision;
 use App\User;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
@@ -163,5 +166,24 @@ class OpticianPatientController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function UserTestSummery($id)
+    {
+        $items = TestSummery::where('patient_id',$id)->get();
+        return view('admin.interfaces.user.patient.testSummery.show',compact('items'));
+    }
+
+    public function UserCheckups($id)
+    {
+        $items = CheckUp::where('patient_id',$id)->get();
+        return view('admin.interfaces.user.patient.checkupsSummery.show',compact('items'));
+    }
+
+    public function UserVisions($id)
+    {
+        $items = Vision::where('patient_id',$id)->get();
+        return view('admin.interfaces.user.patient.visionsSummery.show',compact('items'));
     }
 }
