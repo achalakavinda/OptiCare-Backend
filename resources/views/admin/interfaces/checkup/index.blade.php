@@ -30,7 +30,6 @@
             <table id="table" class="table table-responsive table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>#ID</th>
                     <th>Optician ID</th>
                     <th>Patient ID</th>
                     <th>Type</th>
@@ -43,15 +42,26 @@
 
                     @foreach($CheckUps as $CheckUp)
                         <tr>
-                            <td>{!! $CheckUp->id !!}</td>
-                            {{--<td>--}}
-                            {{--@foreach($images as $image)--}}
-                            {{--<img height="30"  src="{{'/images/'.$image->image ? '/images/'.$image->image : '/images/No_image_available.svg'}}">--}}
+                            <?php
+                            $optician_name = null;
+                            $patient_name = null;
 
-                            {{--@endforeach--}}
-                            {{--</td>--}}
-                            <td>{!! $CheckUp->optician_id !!}</td>
-                            <td>{!! $CheckUp->patient_id!!}</td>
+                            $optician_name = \App\User::find($CheckUp->optician_id) ;
+                            $patient_name = \App\User::find($CheckUp->patient_id) ;
+
+                            if($optician_name)
+                            {
+                                $optician_name = $optician_name->name;
+                            }
+
+                            if($patient_name)
+                            {
+                                $patient_name = $patient_name->name;
+                            }
+
+                            ?>
+                            <td>{!! $optician_name !!}</td>
+                            <td>{!! $patient_name  !!}</td>
                             <td>{!! $CheckUp->type!!}</td>
                             <td>{!! $CheckUp->status!!}</td>
                             <td>

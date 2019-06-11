@@ -71,9 +71,8 @@ class CheckUpController extends Controller
             'date' => $input ['date'],
             'type' => $input ['type'],
             'isMobile' => $input ['isMobile'],
-            'status'   => $input ['status']
-
-
+            'status'   => $input ['status'],
+            'note'   => $input ['note']
         ]);
 
         return redirect('check-up');
